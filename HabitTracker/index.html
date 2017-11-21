@@ -3,21 +3,72 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Habit Tracker </title>
+        <title>Habit Rabbit</title>
         <meta name="description" content="The most advanced habit tracker you've ever seen.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="manifest" href="site.webmanifest">
         <link rel="apple-touch-icon" href="icon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
         <!-- Place favicon.ico in the root directory -->
 
-        <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
 
         <!-- Add your site or application content here -->
-        <p>Hello world!</p>
+
+        <header>
+          <a href="#" class="header-logo"><img src="images/HabitRabbitLogo.png" alt="" class="logo"></a>
+
+          <nav>
+            <a href="">Support</a>
+            <a href="">Sign Up</a>
+            <a href="">Login</a>
+            <a href="" class="social-icon"></a>
+            <a href="" class="social-icon"></a>
+            <a href="" class="social-icon"></a>
+          </nav>
+        </header>
+
+        <section id="main">
+          <div class="half">
+            <h1>Good Habit Rabbit</h1>
+            <a href="" class="btn">Create new good habits</a>
+          </div>
+          <div class="half">
+            <h1>Bad Habit Rabbit</h1>
+            <a href="" class="btn">Defeat your bad habits</a>
+          </div>
+        </section>
+
+        <section id="how-it-works">
+          <h1 class="section-header">How we create / conquer your habits</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe culpa soluta numquam, neque explicabo, ipsa, reprehenderit magnam facere sed qui quidem at. Facere blanditiis eveniet aliquam dolor? Vel illo inventore itaque facere consectetur placeat ipsa doloremque nulla earum architecto. Consectetur.</p>
+        </section>
+
+        <section id="contact">
+          <h1 class="section-header">Contact us</h1>
+          <form id="contact_form" action="#" method="POST" enctype="multipart/form-data">
+          	<div class="row">
+          		<label for="name">Your name:</label><br />
+          		<input id="name" class="input" name="name" type="text" value="" size="30" /><br />
+          	</div>
+          	<div class="row">
+          		<label for="email">Your email:</label><br />
+          		<input id="email" class="input" name="email" type="text" value="" size="30" /><br />
+          	</div>
+          	<div class="row">
+          		<label for="message">Your message:</label><br />
+          		<textarea id="message" class="input" name="message" rows="7" cols="30"></textarea><br />
+          	</div>
+          	<input id="submit_button" type="submit" value="Send email" />
+          </form>
+        </section>
+
+        <footer>
+          <p id="copyright">HabitRabbit © 2017 All Rights Reserved.</p>
+        </footer>
 
 
 
