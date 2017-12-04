@@ -4,4 +4,14 @@ main {
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+    height:80vh;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label, input {
+    margin: 0.1em 0;
 }
