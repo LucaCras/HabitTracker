@@ -124,6 +124,7 @@ nav a {
     color: white;
     padding: 0 1.4em;
     text-transform: uppercase;
+    transition: 0.1s ease-in-out;
 }
 
 nav a:hover {
