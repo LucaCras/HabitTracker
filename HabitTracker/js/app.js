@@ -1,24 +1,44 @@
-function Habit(name, duration, days, type){
+class Habit {
+  constructor(name, duration, days, type, id) {
     this.name = name;
     this.duration = duration;
     this.days = days;
     this.type = type;
+    this.id = id;
     this.succesful = 0;
     this.unsuccesful = 0;
-}
+  }
 
-Habit.prototype = {
-  constructor: Habit,
-  getName:function () {
-  return this.name;
-  },
-  incrementSuccesful:function(){
+  incrementSuccesful(){
     this.succesful += 1;
-  },
-  incrementUnsuccesful:function(){
+  }
+  incrementUnsuccesful(){
     this.unsuccesful += 1;
   }
+  getSuccesRatio(){
+    return this.succesful / this.duration;
+  }
 }
+
+// function Habit(name, duration, days, type, id){
+//     this.name = name;
+//     this.duration = duration;
+//     this.days = days;
+//     this.type = type;
+//     this.id = id;
+//     this.succesful = 0;
+//     this.unsuccesful = 0;
+// }
+
+// Habit.prototype = {
+//   constructor: Habit,
+//   incrementSuccesful:function(){
+//     this.succesful += 1;
+//   },
+//   incrementUnsuccesful:function(){
+//     this.unsuccesful += 1;
+//   }
+// }
 
 function HabitRabbit(name, color, avatar, lives) {
     this.name = name;
@@ -28,6 +48,7 @@ function HabitRabbit(name, color, avatar, lives) {
 }
 
 var main = function() {
+  var counter = 0;
 
   $("#add").click(function() {
     document.getElementById('modal').style.display = 'block';
@@ -50,12 +71,29 @@ var main = function() {
       days.push($(this).val());
     });
 
-    var habit = new Habit(name, end, days, type);
+    var habit = new Habit(name, end, days, type, counter);
+    counter += 1;
 
-    console.log(habit);
-
-    $("#main ul").append('<li><div class="habit"><h2 class="habitname">' +habit.name + '</h2><p>' + habit.duration +' days remaining</p><p>'+ habit.days +'</p><p>'+ habit.type + '</p></div></li>');
+    $("#main ul").append('\
+    <li>\
+      <div class="habit" id="habit_' + habit.id + '">\
+        <a href="#" class="delete"  id="' + habit.id + '">X</a>\
+        <div class="habit-content">\
+          <h2 class="habitname">' +habit.name + '</h2>\
+          <p>' + habit.duration +' days remaining</p>\
+          <p>'+ habit.days +'</p>\
+          <p>'+ habit.type + '</p>\
+        </div>\
+      </div>\
+    </li>'
+    );
     document.getElementById('modal').style.display = 'none';
+  })
+
+  $("#main ul").on("click",".delete", function() {
+    var id = this.id;
+
+    $("#habit_" + id).parent().remove();
   })
 }
 
