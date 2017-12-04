@@ -120,9 +120,10 @@ header {
 }
 
 nav a {
+    font-size: 0.9em;
     text-decoration: none;
     color: white;
-    padding: 0 1.4em;
+    padding: 0 1em;
     text-transform: uppercase;
     transition: 0.1s ease-in-out;
 }

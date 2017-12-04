@@ -83,6 +83,11 @@ li {
     border: none;
     border-radius: 4px;
     color: white;
+    cursor: pointer;
+}
+
+#submit:hover {
+    background-color: greenyellow;
 }
 
 .habit {
