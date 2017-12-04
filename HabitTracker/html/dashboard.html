@@ -13,7 +13,8 @@
         <link rel="apple-touch-icon" href="icon.png">
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="../css/dashboard.css">
     </head>
     <body>
 
@@ -30,14 +31,51 @@
         <section id="toolbar">
           <h3 class="label">Dashboard</h3>
           <ul class="toolbar-items">
-            <li class="toolbar-item">Add a new habit</li>
-            <li class="toolbar-item">Filter</li>
+            <li class="toolbar-item"><a href="#" id="add">+ Add a new habit</a></li>
+            <li class="toolbar-item"><a href="#">Filter</a></li>
           </ul>
             
         </section>
 
         <section id="main">
+          <ul id="habits">
+          </ul>
 
+
+          <div id="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <h1>add that habit!</h1>
+              <form id="createhabit" action="/add" method="POST">
+                <label for="name">habit name</label><br>
+                <input name="name" type="text" required placeholder="e.g. Go to the gym"><hr>
+                <label for="end">How many days until you don't need us anymore?</label>
+                <br>
+                <input name="end" type="number" placeholder="42" min="1" max="5000" required>
+                <hr>
+                <fieldset>
+                  <label for="days">On which days do you want to check your progress?</label>
+                  <br>
+                  <input type="checkbox" name="days" value="Monday">Monday</br>
+                  <input type="checkbox" name="days" value="Tuesday">Tuesday</br>
+                  <input type="checkbox" name="days" value="Wednesday">Wednesday</br>
+                  <input type="checkbox" name="days" value="Thursday">Thursday</br>
+                  <input type="checkbox" name="days" value="Friday">Friday</br>
+                  <input type="checkbox" name="days" value="Saturday">Saturday</br>
+                  <input type="checkbox" name="days" value="Sunday">Sunday</br>
+                </fieldset>
+                <hr>
+                <fieldset>
+                  <label for="type">Do you want to get rid of, or start a habit?</label>
+                  <br>
+                  <input name="type" type="radio" value="good">good<br>
+                  <input name="type" type="radio" value="bad">bad<br>
+                  <br>
+                </fieldset>
+                <input id="submit" type="submit" value="add">
+              </form>
+            </div>
+          </div>
         </section>
 
         <footer>
@@ -47,8 +85,8 @@
 
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
+        <script src="../js/plugins.js"></script>
+        <script src="../js/app.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
         <script>
