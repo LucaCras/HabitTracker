@@ -39,13 +39,13 @@ class Habit {
 //     this.unsuccesful += 1;
 //   }
 // }
-
-function HabitRabbit(name, color, avatar, lives) {
-    this.name = name;
-    this.color = color;
-    this.avatar = avatar;
-    this.lives = lives;
-}
+// 
+// function HabitRabbit(name, color, avatar, lives) {
+//     this.name = name;
+//     this.color = color;
+//     this.avatar = avatar;
+//     this.lives = lives;
+// }
 
 var main = function() {
   var counter = 0;
@@ -77,7 +77,7 @@ var main = function() {
     $("#main ul").append('\
     <li>\
       <div class="habit" id="habit_' + habit.id + '">\
-        <a href="#" class="delete"  id="' + habit.id + '">X</a>\
+        <a href="#" class="delete"  id="' + habit.id + '"><i class="fa fa-times" aria-hidden="true"></i></a>\
         <div class="habit-content">\
           <h2 class="habitname">' +habit.name + '</h2>\
           <p>' + habit.duration +' days remaining</p>\
