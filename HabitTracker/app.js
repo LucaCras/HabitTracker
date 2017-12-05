@@ -33,6 +33,24 @@ app.get('/', (req, res) => {
     res.render('index', {title: "Home | HabitRabbit", stylesheets: ["../css/main.css"]})
 })
 
+// app.post('/signup', (req, res) => {
+//     var username = req.body.username;
+//     var email = req.body.email;
+//     var password = req.body.password;
+
+//     var newUser = JSON.stringify({username: username, email: email, password: password})
+
+//     console.log(app.locals.users)
+//     var obj =  JSON.parse(app.locals.users)
+
+//     obj['users'].push(newUser)
+
+//     app.locals.users = JSON.stringify(obj)
+
+
+//     console.log(newUser)
+// })
+
 app.get('/login', (req, res) => {
     res.render('login', {title: 'Login | HabitRabbit', stylesheets: ["../css/login.css"], message: ""})
 })

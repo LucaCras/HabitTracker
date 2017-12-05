@@ -1,27 +1,8 @@
 var main = function(){
 
     var username = document.getElementById("username")
+    // var userdatabase = $.getJSON('/users', users => { userdatabase = users; console.log(userdatabase) })
 
-    function checkUsernameAvailability() {
-        var userdatabase = $.getJSON('/users', users => { userdatabase = users; console.log(userdatabase) })
-
-        for(var i = 0; i < userdatabase.users.length; i++) {
-            if (userdatabase.users[i] == username) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    function validateUsername() {
-        if(!checkUsernameAvailability) {
-            username.setCustomValidity("Username already taken");
-            console.log('1');
-        } else {
-            username.setCustomValidity('');
-            console.log('1');
-        }
-    }
 
     var password = document.getElementById("password"), confirmPassword = document.getElementById("confirmPassword");
 
@@ -33,8 +14,6 @@ var main = function(){
         }
     }
 
-    username.onkeyup = checkUsernameAvailability;
-    username.onchange = checkUsernameAvailability;
     password.onchange = validatePassword;
     confirmPassword.onkeyup = validatePassword;
 
@@ -44,4 +23,6 @@ var main = function(){
 }
 
 $(document).ready(main);
+
+
 
