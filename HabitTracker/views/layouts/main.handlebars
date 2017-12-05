@@ -11,8 +11,9 @@
         <link rel="manifest" href="site.webmanifest">
         <link rel="apple-touch-icon" href="icon.png">
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-        <link rel="stylesheet" href="../css/main.css">
-        
+        {{# each stylesheets}}
+        <link rel="stylesheet" href="{{ this }}">
+        {{/ each}}
 
         <script src="https://use.fontawesome.com/07f8e1b156.js"></script>
     </head>

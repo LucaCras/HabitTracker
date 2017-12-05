@@ -23,11 +23,11 @@ app.use(express.static(path.join(__dirname, 'public'), options));
 app.set('port', process.env.PORT || 3000);
 
 app.get('/', (req, res) => {
-    res.render('index')
+    res.render('index', {title: "Home | HabitRabbit", stylesheets: ["../css/main.css"]})
 })
 
 app.get('/login', (req, res) => {
-    res.render('login')
+    res.render('login', {title: 'Login | HabitRabbit', stylesheets: ["../css/login.css"]})
 })
 
 app.post('/login', (req, res) => {
@@ -42,11 +42,11 @@ app.post('/login', (req, res) => {
 })
 
 app.get('/support', (req, res) => {
-    res.render('support')
+    res.render('support', {title: "Support Us | HabitRabbit", stylesheets: []})
 })
 
 app.get('/dashboard', (req, res) => {
-    res.render('dashboard', {layout: false});
+    res.render('dashboard', {title: "Dashboard | HabitRabbit", stylesheets: ["../css/dashboard.css  "]});
 })
 
 
