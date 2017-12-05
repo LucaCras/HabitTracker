@@ -13,7 +13,7 @@
       <form id="signup-form" action="/signup" method="POST">
         <label for="username">Username</label>
         <br>
-        <input type="text" placeholder="Username" required>
+        <input id="username" type="text" placeholder="Username" required>
         <br>
         <label for="email">Email</label>
         <br>
@@ -21,9 +21,9 @@
         <br>
         <label for="password">Password</label>
         <br>
-        <input type="password" placeholder="Password" required>
+        <input id="password" type="password" placeholder="Password" required>
         <br>
-        <input type="password" placeholder="Repeat Password" required autocomplete="off">
+        <input id="confirmPassword" type="password" placeholder="confirm password" required autocomplete="off">
         <br>
         <input type="submit" value="Sign up">
       </form>
@@ -58,6 +58,5 @@
 
 {{> footer }}
 
-<script src="../js/app.js" type="text/javascript"></script>
-<script src="../js/index.js" type="text/javascript"></script>
+<script src="js/index.js" type="text/javascript"></script>
 

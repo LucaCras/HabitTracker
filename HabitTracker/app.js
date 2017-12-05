@@ -18,26 +18,33 @@ app.set('view engine', 'handlebars');
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({extended: false}))
 
+// Static Files Middleware
 app.use(express.static(path.join(__dirname, 'public'), options));
 
+
+// Set port to environment variable, or use port 3000 locally
 app.set('port', process.env.PORT || 3000);
+
+
+// Load in the users database
+app.locals.users = require('./database/users.json');
 
 app.get('/', (req, res) => {
     res.render('index', {title: "Home | HabitRabbit", stylesheets: ["../css/main.css"]})
 })
 
 app.get('/login', (req, res) => {
-    res.render('login', {title: 'Login | HabitRabbit', stylesheets: ["../css/login.css"]})
+    res.render('login', {title: 'Login | HabitRabbit', stylesheets: ["../css/login.css"], message: ""})
 })
 
 app.post('/login', (req, res) => {
     var username = req.body.username;
     var password = req.body.password;
 
-    if (username !== 'Luca' || password !== 'password') {
-        res.send("No such account found");
-    } else {
+    if (userAuthentication(username, password)) {
         res.redirect('/dashboard');
+    } else {
+        res.render('login', { title: 'Login | HabitRabbit', stylesheets: ["../css/login.css"], message: "Login failed!" })
     }
 })
 
@@ -46,12 +53,37 @@ app.get('/support', (req, res) => {
 })
 
 app.get('/dashboard', (req, res) => {
-    res.render('dashboard', {title: "Dashboard | HabitRabbit", stylesheets: ["../css/dashboard.css  "]});
+    res.render('dashboard', {title: "Dashboard | HabitRabbit", stylesheets: ["../css/dashboard.css"]});
+})
+
+app.get('/users', (req, res) => {
+    res.json(app.locals.users)
 })
 
 
-
+// User Verification
+var userAuthentication = (username, password) => {
+    var users = app.locals.users.users;
+    for (var i = 0; i < users.length; i++) {
+        if(users[i].username == username) {
+            if (users[i].password == password) {
+                console.log("Login succesful");
+                return true;
+            }
+        }
+    }
+    console.log("Either account does not exist or username & password combo is wrong!");
+    return false;
+}
 
 app.listen(app.get('port'), () => {
     console.log('Server listening on port ' + app.get('port'));
+})
+
+app.use(function (req, res, next) {
+    res.status(404);
+
+    if (req.accepts('html')) {
+        res.render('404', { url: req.url, title: "404 | HabitRabbit", stylesheets: ["../css/404.css"] });
+    }
 })

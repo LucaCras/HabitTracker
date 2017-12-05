@@ -9,6 +9,14 @@ main {
     height:80vh;
 }
 
+.message {
+    color: red;
+    font-size: 0.9em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-style: italic;
+    margin-top: 0;
+}
+
 form {
     display: flex;
     flex-direction: column;

@@ -1,0 +1,14 @@
+{
+    "users": [
+        {
+            "username": "Luca",
+            "email": "Luca_Cras@hotmail.com",
+            "password": "password"
+        },
+        {
+            "username": "Bram",
+            "email": "Bram.Dikker@hotmail.com",
+            "password": "Akciegay"
+        }
+    ]
+}
