@@ -1,7 +1,7 @@
 const express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
-
+const fs = require('fs');
 const app = express();
 
 const exphbs = require('express-handlebars');
@@ -28,6 +28,7 @@ app.set('port', process.env.PORT || 3000);
 
 // Load in the users database
 app.locals.users = require('./database/users.json');
+app.locals.habits = require('./database/habits.json')
 
 app.get('/', (req, res) => {
     res.render('index', {title: "Home | HabitRabbit", stylesheets: ["../css/main.css"]})
@@ -64,6 +65,21 @@ app.post('/login', (req, res) => {
     } else {
         res.render('login', { title: 'Login | HabitRabbit', stylesheets: ["../css/login.css"], message: "Login failed!" })
     }
+})
+
+app.get('/habits', (req, res) => {
+    res.json(app.locals.habits);
+})
+
+app.post('/addHabit', (req, res) => {
+    app.locals.habits.habits.push(req.body)
+    var json = JSON.stringify(app.locals.habits)
+    console.log(json)
+    fs.writeFile('database/habits.json', json, (e) => {
+        if(e) {
+            return console.log(e);
+        }
+    })
 })
 
 app.get('/support', (req, res) => {

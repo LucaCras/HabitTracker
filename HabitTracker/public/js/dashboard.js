@@ -20,35 +20,36 @@ class Habit {
   }
 }
 
-// function Habit(name, duration, days, type, id){
-//     this.name = name;
-//     this.duration = duration;
-//     this.days = days;
-//     this.type = type;
-//     this.id = id;
-//     this.succesful = 0;
-//     this.unsuccesful = 0;
-// }
+var createNewHabit = function(name, duration, days, type, id) {
+  var habit = new Habit(name, duration, days, type, id);
 
-// Habit.prototype = {
-//   constructor: Habit,
-//   incrementSuccesful:function(){
-//     this.succesful += 1;
-//   },
-//   incrementUnsuccesful:function(){
-//     this.unsuccesful += 1;
-//   }
-// }
-// 
-// function HabitRabbit(name, color, avatar, lives) {
-//     this.name = name;
-//     this.color = color;
-//     this.avatar = avatar;
-//     this.lives = lives;
-// }
+  $("#main ul").append('\
+    <li>\
+      <div class="habit" id="habit_' + habit.id + '">\
+        <a href="#" class="delete"  id="' + habit.id + '"><i class="fa fa-times" aria-hidden="true"></i></a>\
+        <div class="habit-content">\
+          <h2 class="habitname">' + habit.name + '</h2>\
+          <p>' + habit.duration + ' days remaining</p>\
+          <p>'+ habit.days + '</p>\
+          <p>'+ habit.type + '</p>\
+        </div>\
+      </div>\
+    </li>'
+  );
+}
 
 var main = function() {
   var counter = 0;
+
+  var habits = $.getJSON('/habits', (habits) => {
+    for( var i = 0; i < habits.habits.length; i++ ) {
+      var currentHabit = habits.habits[i];
+      createNewHabit(currentHabit.name, currentHabit.duration, currentHabit.days, currentHabit.type, currentHabit.id)
+      counter++;
+    }
+  })
+
+  
 
   $("#add").click(function() {
     document.getElementById('modal').style.display = 'block';
@@ -71,22 +72,11 @@ var main = function() {
       days.push($(this).val());
     });
 
-    var habit = new Habit(name, end, days, type, counter);
-    counter += 1;
+    var newHabit = new Habit(name, end, days, type, counter)
+    createNewHabit(name, end, days, type, counter);
 
-    $("#main ul").append('\
-    <li>\
-      <div class="habit" id="habit_' + habit.id + '">\
-        <a href="#" class="delete"  id="' + habit.id + '"><i class="fa fa-times" aria-hidden="true"></i></a>\
-        <div class="habit-content">\
-          <h2 class="habitname">' +habit.name + '</h2>\
-          <p>' + habit.duration +' days remaining</p>\
-          <p>'+ habit.days +'</p>\
-          <p>'+ habit.type + '</p>\
-        </div>\
-      </div>\
-    </li>'
-    );
+    $.post('/addHabit', newHabit)
+
     document.getElementById('modal').style.display = 'none';
   })
 
@@ -96,6 +86,7 @@ var main = function() {
     $("#habit_" + id).parent().remove();
   })
 }
+
 
 $(document).ready(main);
  
