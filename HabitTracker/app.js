@@ -3,7 +3,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 const fs = require('fs');
 const app = express();
-
+var __dirname = "HabitTracker/HabitTracker";
 const exphbs = require('express-handlebars');
 
 var options = {
@@ -12,7 +12,9 @@ var options = {
     index: false
 };
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({defaultLayout: 'main', extname: '.handlebars',
+partialsDir : [__dirname + '/views/partials']
+,layoutsDir: __dirname + '/views/layouts'}));
 app.set('view engine', 'handlebars');
 
 // Body Parser Middleware
@@ -29,9 +31,11 @@ app.set('port', process.env.PORT || 3000);
 // Load in the users database
 app.locals.users = require('./database/users.json');
 app.locals.habits = require('./database/habits.json')
+//set the views directory
+app.set('views', path.join(__dirname, 'views/'));
 
 app.get('/', (req, res) => {
-    res.render('index', {title: "Home | HabitRabbit", stylesheets: ["../css/main.css"]})
+    res.render('index', {title: "Home | HabitRabbit", stylesheets: ["..css/main.css"]})
 })
 
 // app.post('/signup', (req, res) => {
