@@ -3,7 +3,6 @@ var path = require('path');
 var bodyParser = require('body-parser');
 const fs = require('fs');
 const app = express();
-var __dirname = "HabitTracker/HabitTracker";
 const exphbs = require('express-handlebars');
 
 var options = {
@@ -11,6 +10,33 @@ var options = {
     extensions: ['htm', 'html'],
     index: false
 };
+
+class Habit {
+    constructor(name, duration, days, type) {
+        this.name = name;
+        this.duration = duration;
+        this.days = days;
+        this.type = type;
+        this.succesful = 0;
+        this.unsuccesful = 0;
+      }
+      
+      incrementSuccesful(){
+        this.succesful += 1;
+      }
+
+      incrementUnsuccesful(){
+        this.unsuccesful += 1;
+      }
+
+      getSuccesRatio(){
+        return this.succesful / this.duration;
+      }
+
+      static createHabit(name, duration, days, type, id){
+        return new Habit(name, duration, days, type, id);
+      }
+}
 
 app.engine('handlebars', exphbs({defaultLayout: 'main', extname: '.handlebars',
 partialsDir : [__dirname + '/views/partials']
@@ -35,26 +61,8 @@ app.locals.habits = require('./database/habits.json')
 app.set('views', path.join(__dirname, 'views/'));
 
 app.get('/', (req, res) => {
-    res.render('index', {title: "Home | HabitRabbit", stylesheets: ["..css/main.css"]})
+    res.render('index', {title: "Home | HabitRabbit", stylesheets: ["css/main.css"]})
 })
-
-// app.post('/signup', (req, res) => {
-//     var username = req.body.username;
-//     var email = req.body.email;
-//     var password = req.body.password;
-
-//     var newUser = JSON.stringify({username: username, email: email, password: password})
-
-//     console.log(app.locals.users)
-//     var obj =  JSON.parse(app.locals.users)
-
-//     obj['users'].push(newUser)
-
-//     app.locals.users = JSON.stringify(obj)
-
-
-//     console.log(newUser)
-// })
 
 app.get('/login', (req, res) => {
     res.render('login', {title: 'Login | HabitRabbit', stylesheets: ["../css/login.css"], message: ""})
@@ -76,7 +84,7 @@ app.get('/habits', (req, res) => {
 })
 
 app.post('/addHabit', (req, res) => {
-    app.locals.habits.habits.push(req.body)
+    Habit.createHabit(req.body.name, req.body.duration, req.body.days, req.body.type, req.body.id)
     var json = JSON.stringify(app.locals.habits)
     console.log(json)
     fs.writeFile('database/habits.json', json, (e) => {

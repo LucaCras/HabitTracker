@@ -1,0 +1,17 @@
+# habbitrabbit.nl
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Luca Cras -- Slimmerik
+    Bram Dikker -- Hipster
+
+# THANKS
+
+    Andy Zaidman - Moreel Support
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5, JS
+    jQuery
+    mySQL
