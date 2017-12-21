@@ -1,5 +1,6 @@
-body {
+body, html {
     background-color: #eee;
+    overflow-x: hidden;
 }
 
 li {
@@ -24,7 +25,6 @@ li {
 
 #main {
     background: #eee;
-    min-height:calc(100vh - 162px);
     height: 100%;
 }
 
@@ -129,11 +129,11 @@ li {
 }
 
 .habitname {
-    text-emphasis: bold;
+    font-weight: bold;
 }
 
 footer {
-    background-color: skyblue;
+    background-color: skyblue !important;
     color: white;
     margin: 0 !important;
 }

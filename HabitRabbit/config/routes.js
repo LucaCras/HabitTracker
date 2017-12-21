@@ -36,7 +36,11 @@ module.exports = function (app, passport) {
 
     // dashboard page
     app.get('/dashboard/:user', dashboard.loggedIn, dashboard.dashboard);
-    app.post('/dashboard/:user/:update', dashboard.add); // add / edit / delete a habit.
+    app.post('/dashboard/:user/add', dashboard.add); // add a habit.
+    app.post('/dashboard/:user/edit', dashboard.edit); // edit a habit.
+    app.post('/dashboard/:user/delete', dashboard.delete); // delete a habit.
+
+
 
     // more to be added later
 
