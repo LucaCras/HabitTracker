@@ -34,10 +34,17 @@ module.exports.add = (req, res, next) => {
 
 module.exports.edit = (req, res, next) => {
     console.log("editing is yet to be implemented")
+    connection.query('UPDATE HabitRabbit.habits SET name = ? WHERE habit_id = ?', [req.body.name, req.body.id], (err) => {
+        if (err) {
+            console.log(err);
+        }
+    })
 }
 
 module.exports.delete = (req, res) => {
-    connection.query('DELETE FROM HabitRabbit.habits WHERE habit_id = ' + req.body.id, (rows) => {
-        console.log(rows);
+    connection.query('DELETE FROM HabitRabbit.habits WHERE habit_id = ' + req.body.id, (err, rows) => {
+        if (err) {
+            console.log(err);
+        }
     })
 }

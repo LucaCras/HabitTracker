@@ -41,6 +41,7 @@ var createHTML = function(habit) {
             <p>' + habit.duration + ' days remaining</p>\
             <p>'+ habit.frequency + ' times a week</p>\
             <p>'+ habit.good + '</p>\
+            <a href="#" id="edit"  id="' + habit.id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>\
           </div>\
         </div>\
       </li>'
@@ -53,6 +54,7 @@ var main = function() {
 
     var getHabits = function(){
         $.getJSON('/dashboard/habits', (rows) => {
+
             var html = "";
             amount = rows.length + 1;
             for( var i = 0; i < rows.length; i++ ) {
@@ -95,15 +97,28 @@ var main = function() {
 
       $.post('/dashboard/Luca/add', {name: name, duration: duration, frequency: frequency, good: good, user: 1})
 
+
       document.getElementById('modal').style.display = 'none';
   })
 
   $("#main ul").on("click",".delete", function() {
     var id = this.id;
 
-    $("#habit_" + id).parent().remove();
-
     $.post('/dashboard/Luca/delete', {id: id})
+
+    getHabits();
+  })
+
+  $('#main ul ').change(function() {
+    //   var data = {
+    //       id: this.id,
+    //       name: this.name
+    //   }
+
+    //   $.post()
+    //   console.log('edit')
+    console.log('hi')
+    console.log(this.parent)
   })
 }
 
