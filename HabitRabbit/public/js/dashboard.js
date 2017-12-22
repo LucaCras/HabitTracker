@@ -68,8 +68,7 @@ var main = function() {
                 habit = new Habit(rows[i].habit_id, rows[i].name, rows[i].duration, rows[i].frequency, rows[i].good);
                 html += createHTML(habit)
                 nextId = rows[i].id + 1;
-            }
-            console.log(habitList);            
+            }         
             $('#habits').html(html); 
         })
     }
@@ -79,7 +78,7 @@ var main = function() {
     setInterval(() => { getHabits() }, 10000)
 
     $("#add").click(function() {
-        document.getElementById('modal').style.display = 'block';
+        document.getElementById('create-modal').style.display = 'block';
     })
 
     $(".close").click(function () {
@@ -107,7 +106,7 @@ var main = function() {
         $.post('/dashboard/Luca/add', {name: name, duration: duration, frequency: frequency, good: good, user: 1})
 
 
-        document.getElementById('modal').style.display = 'none';
+        document.getElementById('create-modal').style.display = 'none';
     })
 
     $("#main ul").on("click",".delete", function() {
@@ -119,21 +118,29 @@ var main = function() {
     })
 
     $("#main ul").on("click", ".edit", function() {
-        var habit = habitList[indexInHabitList(this.id)];
-
+        var index = indexInHabitList(this.id);
+        var habit = habitList[index];
+        
+        
         console.log(habit);
-        document.getElementById('modal').style.display = 'block';
-        $('input[name="name"]').attr('value', habit.name);
-        $('input[name="duration"]').attr('value', habit.duration);
-        $('input[name="duration"]').attr('value', habit.duration);
-        $('option[value="'+ habit.frequency +'"]').attr('selected','selected');
+        document.getElementById('edit-modal').style.display = 'block';
+        $('edit-modal input[name="name"]').attr('value', habit.name);
+        $('edit-modal input[name="duration"]').attr('value', habit.duration);
+        $('edit-modal input[name="duration"]').attr('value', habit.duration);
+        $('edit-modal option[value="'+ habit.frequency +'"]').attr('selected','selected');
         if(habit.good){
-            $('input[value="good"]').attr('checked', true);
-        } else $('input[value="bad"]').attr('checked', true);
-
+            $('edit-modal input[value="good"]').attr('checked', true);
+        } else {
+            $('edit-modal input[value="bad"]').attr('checked', true);
+        }
     })
 
-    $("input").focus(function(){
+    $("#edithabit").submit(function(e) {
+        document.getElementById('edit-modal').style.display = 'none';
+        getHabits();
+    })
+
+    $("input").focus(function() {
         $(this).one("click keyup", function(e){      
             $(this).select();
         });

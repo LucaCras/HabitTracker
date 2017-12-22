@@ -12,7 +12,7 @@
   </ul>
 
 
-  <div id="modal">
+  <div class="modal" id="create-modal">
     <div class="modal-content">
       <span class="close">&times;</span>
       <h1>add that habit!</h1>
@@ -40,11 +40,48 @@
         <fieldset>
           <label for="type">Do you want to get rid of, or start a habit?</label>
           <br>
-          <input name="type" type="radio" value="good">good<br>
+          <input name="type" type="radio" value="good" checked>good<br>
           <input name="type" type="radio" value="bad">bad<br>
           <br>
         </fieldset>
         <input id="submit" type="submit" value="add">
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="edit-modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h1>add that habit!</h1>
+      <form id="edithabit" action="/dashboard/Luca/edit" method="POST">
+        <label for="name">habit name</label><br>
+        <input name="name" type="text" required placeholder="e.g. Go to the gym"><hr>
+        <label for="duration">How many days until you don't need us anymore?</label>
+        <br>
+        <input name="duration" type="number" placeholder="42" min="1" max="5000" required>
+        <hr>
+        <fieldset>
+          <label for="frequency">How often do you want to check your progress?</label>
+          <br>
+          <select name="frequency">
+            <option name="frequency" value="1">Once a week</option>
+            <option name="frequency" value="2">Twice a week</option>
+            <option name="frequency" value="3">Three times a week</option>
+            <option name="frequency" value="4">Four times a week</option>
+            <option name="frequency" value="5">Five times a week</option>
+            <option name="frequency" value="6">Six times a week</option>
+            <option name="frequency" value="7">Seven times a week</option>
+          <select>
+        </fieldset>
+        <hr>
+        <fieldset>
+          <label for="type">Do you want to get rid of, or start a habit?</label>
+          <br>
+          <input name="type" type="radio" value="good">good<br>
+          <input name="type" type="radio" value="bad">bad<br>
+          <br>
+        </fieldset>
+        <input id="submit" type="submit" value="edit">
       </form>
     </div>
   </div>

@@ -21,7 +21,7 @@ module.exports.habits = (req, res) => {
     })
 }
 
-module.exports.add = (req, res, next) => {
+module.exports.add = (req, res) => {
     var values = '("' + req.body.name + '",' + req.body.duration + ',' + req.body.frequency + ',' + req.body.good + ',' + req.body.user + ')';
     connection.query('INSERT INTO HabitRabbit.habits (name, duration, frequency, good, user_id) VALUES ' + values, (err, results) => {
         if(err) {
@@ -32,11 +32,14 @@ module.exports.add = (req, res, next) => {
     })
 }
 
-module.exports.edit = (req, res, next) => {
+module.exports.edit = (req, res) => {
     console.log("editing is yet to be implemented")
-    connection.query('UPDATE HabitRabbit.habits SET name = ? WHERE habit_id = ?', [req.body.name, req.body.id], (err) => {
+    console.log(req.body);
+    connection.query('UPDATE HabitRabbit.habits SET name = ?, duration = ?, frequency = ?, good = ? WHERE habit_id = ?', [req.body.name, req.body.duration, req.body.frequency, req.body.good, req.body.id], (err, results) => {
         if (err) {
             console.log(err);
+        } else {
+            console.log(results)
         }
     })
 }
