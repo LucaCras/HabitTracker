@@ -123,6 +123,14 @@ var main = function() {
 
         console.log(habit);
         document.getElementById('modal').style.display = 'block';
+        $('input[name="name"]').attr('value', habit.name);
+        $('input[name="duration"]').attr('value', habit.duration);
+        $('input[name="duration"]').attr('value', habit.duration);
+        $('option[value="'+ habit.frequency +'"]').attr('selected','selected');
+        if(habit.good){
+            $('input[value="good"]').attr('checked', true);
+        } else $('input[value="bad"]').attr('checked', true);
+
     })
 
     $("input").focus(function(){
