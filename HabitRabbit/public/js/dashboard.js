@@ -78,11 +78,11 @@ var main = function() {
     setInterval(() => { getHabits() }, 10000)
 
     $("#add").click(function() {
-        document.getElementById('create-modal').style.display = 'block';
+        $('.modal').css('display', 'block');
     })
 
     $(".close").click(function () {
-        document.getElementById('modal').style.display = 'none';
+        $('.modal').css('display', 'none');
     })  
 
     $("#createhabit").submit(function(e) {
@@ -121,6 +121,8 @@ var main = function() {
         var index = indexInHabitList(this.id);
         var habit = habitList[index];
         
+        var input = $("<input>").attr("type", "hidden").attr("name", "id").val(this.id);
+        $('#edithabit').append($(input));
         
         console.log(habit);
         document.getElementById('edit-modal').style.display = 'block';
