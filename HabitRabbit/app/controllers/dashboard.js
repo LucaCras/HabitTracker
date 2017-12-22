@@ -33,9 +33,7 @@ module.exports.add = (req, res) => {
 }
 
 module.exports.edit = (req, res) => {
-    console.log("editing is yet to be implemented")
-    console.log(req.body);
-    connection.query('UPDATE HabitRabbit.habits SET name = ?, duration = ?, frequency = ?, good = ? WHERE habit_id = ?', [req.body.name, req.body.duration, req.body.frequency, req.body.good, req.body.id], (err, results) => {
+    connection.query('UPDATE HabitRabbit.habits SET name = ?, duration = ?, frequency = ?, good = ? WHERE habit_id = ?', [req.body.name, req.body.duration, req.body.frequency, req.body.type, req.body.id], (err, results) => {
         if (err) {
             console.log(err);
         } else {
@@ -50,4 +48,8 @@ module.exports.delete = (req, res) => {
             console.log(err);
         }
     })
+}
+
+module.exports.sort = (req, res)=> {
+    console.log("sorted")
 }

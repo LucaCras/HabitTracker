@@ -59,6 +59,9 @@ var main = function() {
         );
     }
 
+    var input = $("<input>").attr("type", "hidden").attr("name", "id");
+    $('#edithabit').append($(input));
+
     var getHabits = function(){
         $.getJSON('/dashboard/habits', (rows) => {
             habitList = [];
@@ -78,7 +81,7 @@ var main = function() {
     setInterval(() => { getHabits() }, 10000)
 
     $("#add").click(function() {
-        $('.modal').css('display', 'block');
+        $('#create-modal').css('display', 'block');
     })
 
     $(".close").click(function () {
@@ -99,7 +102,7 @@ var main = function() {
             good = 0  ;
         }
 
-
+        console.log("test");
         var newHabit = new Habit(nextId, name, duration, frequency, good)
         $('#habits').append(createHTML(newHabit))
 
@@ -121,25 +124,26 @@ var main = function() {
         var index = indexInHabitList(this.id);
         var habit = habitList[index];
         
-        var input = $("<input>").attr("type", "hidden").attr("name", "id").val(this.id);
-        $('#edithabit').append($(input));
-        
         console.log(habit);
         document.getElementById('edit-modal').style.display = 'block';
-        $('edit-modal input[name="name"]').attr('value', habit.name);
-        $('edit-modal input[name="duration"]').attr('value', habit.duration);
-        $('edit-modal input[name="duration"]').attr('value', habit.duration);
-        $('edit-modal option[value="'+ habit.frequency +'"]').attr('selected','selected');
+        $('#edit-modal input[name="name"]').attr('value', habit.name);
+        $('#edit-modal input[name="duration"]').attr('value', habit.duration);
+        $('#edit-modal input[name="duration"]').attr('value', habit.duration);
+        $('#edit-modal option[value="'+ habit.frequency +'"]').attr('selected','selected');
+        $('#edit-modal input[name="id"]').val(habit.id);
         if(habit.good){
-            $('edit-modal input[value="good"]').attr('checked', true);
+            $('edit-modal input[value="1"]').attr('checked', true);
         } else {
-            $('edit-modal input[value="bad"]').attr('checked', true);
+            $('edit-modal input[value="0"]').attr('checked', true);
         }
     })
 
-    $("#edithabit").submit(function(e) {
+    $("#edithabit #submit").click(function(e) {
         document.getElementById('edit-modal').style.display = 'none';
-        getHabits();
+    })
+
+    $("#sortByName").click(function() {
+        $.get('/dashboard/Luca/sort')
     })
 
     $("input").focus(function() {
