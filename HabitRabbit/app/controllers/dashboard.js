@@ -12,44 +12,44 @@ module.exports.dashboard = (req, res) => {
 }
 
 module.exports.habits = (req, res) => {
-    connection.query('SELECT * FROM HabitRabbit.habits', (err, rows) => {
+    connection.query('SELECT * FROM HabitRabbit.habits', (err, results) => {
         if(err) {
             console.log(err)
         } else {
-            res.json(rows)
+            console.log("success");
         }
     })
 }
 
 module.exports.add = (req, res) => {
-    var values = '("' + req.body.name + '",' + req.body.duration + ',' + req.body.frequency + ',' + req.body.good + ',' + req.body.user + ')';
-    connection.query('INSERT INTO HabitRabbit.habits (name, duration, frequency, good, user_id) VALUES ' + values, (err, results) => {
+    const name = req.body.name;
+    const duration = req.body.duration;
+    const frequency = req.body.frequency;
+    const good = req.body.good;
+    connection.query('INSERT INTO HabitRabbit.habits (name, duration, frequency, good) VALUES (?, ?, ?, ?)', [name, duration, frequency, good], (err) => {
         if(err) {
             console.log(err)
-        } else {
-            console.log(results)
         }
     })
 }
 
 module.exports.edit = (req, res) => {
-    connection.query('UPDATE HabitRabbit.habits SET name = ?, duration = ?, frequency = ?, good = ? WHERE habit_id = ?', [req.body.name, req.body.duration, req.body.frequency, req.body.type, req.body.id], (err, results) => {
+    const name = req.body.name;
+    const duration = req.body.duration;
+    const frequency = req.body.frequency;
+    const good = req.body.good;
+    const id = req.body.id;
+    connection.query('UPDATE HabitRabbit.habits SET name = ?, duration = ?, frequency = ?, good = ? WHERE habit_id = ?', [name, duration, frequency, good, id], (err) => {
         if (err) {
             console.log(err);
-        } else {
-            console.log(results)
         }
     })
 }
 
 module.exports.delete = (req, res) => {
-    connection.query('DELETE FROM HabitRabbit.habits WHERE habit_id = ' + req.body.id, (err, rows) => {
+    connection.query('DELETE FROM HabitRabbit.habits WHERE habit_id = ?', req.body.id, (err, rows) => {
         if (err) {
             console.log(err);
         }
     })
-}
-
-module.exports.sort = (req, res)=> {
-    console.log("sorted")
 }

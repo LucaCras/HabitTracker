@@ -33,6 +33,7 @@ var main = function() {
         }
         return -1;
     }
+
     var insertIntoHabitList = function(habit) {
         if (indexInHabitList(habit.id) == -1) {
             habitList.push(habit);            
@@ -44,18 +45,18 @@ var main = function() {
     var createHTML = function(habit) {
         insertIntoHabitList(habit);
         return ('\
-          <li>\
-            <div class="habit" id="' + habit.id + '">\
-              <a href="#" class="delete"  id="' + habit.id + '"><i class="fa fa-times" aria-hidden="true"></i></a>\
-              <div class="habit-content">\
-                <h2 class="habitname">' + habit.name + '</h2>\
-                <p>' + habit.duration + ' days remaining</p>\
-                <p>'+ habit.frequency + ' times a week</p>\
-                <p>'+ habit.good + '</p>\
-                <a href="#" class="edit" id="' + habit.id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>\
-              </div>\
-            </div>\
-          </li>'
+            <li>\
+                <div class="habit" id="' + habit.id + '">\
+                <a href="#" class="delete"  id="' + habit.id + '"><i class="fa fa-times" aria-hidden="true"></i></a>\
+                <div class="habit-content">\
+                    <h2 class="habitname">' + habit.name + '</h2>\
+                    <p>' + habit.duration + ' days remaining</p>\
+                    <p>'+ habit.frequency + ' times a week</p>\
+                    <p>'+ habit.good + '</p>\
+                    <a href="#" class="edit" id="' + habit.id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>\
+                </div>\
+                </div>\
+            </li>'
         );
     }
 
@@ -63,16 +64,17 @@ var main = function() {
     $('#edithabit').append($(input));
 
     var getHabits = function(){
-        $.getJSON('/dashboard/habits', (rows) => {
-            habitList = [];
-            var html = "";
-            for( var i = 0; i < rows.length; i++ ) {
+        $.getJSON('/dashboard/habits', function() {
+            // habitList = [];
+            // var html = "";
+            // for( var i = 0; i < rows.length; i++ ) {
 
-                habit = new Habit(rows[i].habit_id, rows[i].name, rows[i].duration, rows[i].frequency, rows[i].good);
-                html += createHTML(habit)
-                nextId = rows[i].id + 1;
-            }         
-            $('#habits').html(html); 
+            //     habit = new Habit(rows[i].habit_id, rows[i].name, rows[i].duration, rows[i].frequency, rows[i].good);
+            //     html += createHTML(habit)
+            //     nextId = rows[i].id + 1;
+            // }         
+            // $('#habits').html(html); 
+            console.log("test");
         })
     }
 
@@ -91,23 +93,18 @@ var main = function() {
     $("#createhabit").submit(function(e) {
         e.preventDefault();
 
-        var form = new FormData(document.getElementById("createhabit"));
-        var name = form.get("name");
-        var duration = form.get("duration");
-        var frequency = form.get("frequency");
-        var good;
-        if (form.get('type') == 'good') {
-            good = 1;
-        } else {
-            good = 0  ;
-        }
+        var data = $('#createhabit').serializeArray().reduce(function(obj, item) {
+            obj[item.name] = item.value;
+            return obj;
+        }, {});
 
-        console.log("test");
-        var newHabit = new Habit(nextId, name, duration, frequency, good)
+        console.log(data);
+        var newHabit = new Habit(nextId, data.name, data.duration, data.frequency, data.good)
         $('#habits').append(createHTML(newHabit))
 
-        $.post('/dashboard/Luca/add', {name: name, duration: duration, frequency: frequency, good: good, user: 1})
+        $.post('/dashboard/Luca/add', data)
 
+        getHabits();
 
         document.getElementById('create-modal').style.display = 'none';
     })
@@ -124,7 +121,6 @@ var main = function() {
         var index = indexInHabitList(this.id);
         var habit = habitList[index];
         
-        console.log(habit);
         document.getElementById('edit-modal').style.display = 'block';
         $('#edit-modal input[name="name"]').attr('value', habit.name);
         $('#edit-modal input[name="duration"]').attr('value', habit.duration);
@@ -138,12 +134,19 @@ var main = function() {
         }
     })
 
-    $("#edithabit #submit").click(function(e) {
-        document.getElementById('edit-modal').style.display = 'none';
-    })
+    $("#edithabit").submit(function(e) {
+        e.preventDefault();
 
-    $("#sortByName").click(function() {
-        $.get('/dashboard/Luca/sort')
+        var data = $('#edithabit').serializeArray().reduce(function(obj, item) {
+            obj[item.name] = item.value;
+            return obj;
+        }, {});
+
+        console.log(data);
+
+        $.post("/dashboard/Luca/edit", data);
+
+        getHabits();
     })
 
     $("input").focus(function() {
