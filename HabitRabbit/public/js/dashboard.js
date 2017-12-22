@@ -23,29 +23,36 @@ class Habit {
 var main = function() {
 
     var nextId = 0;
-    var habitList = [];
+    var habitList;
 
-    var insertIntoHabitList = function(habit) {
+    var indexInHabitList = function(id) {
         for (var i = 0; i < habitList.length; i++) {
-            if (habitList[i].id === habit.id) {
-                return null;
+            if (habitList[i].id == id) {
+                return i;
             }
         }
-        habitList.push(habit);
+        return -1;
+    }
+    var insertIntoHabitList = function(habit) {
+        if (indexInHabitList(habit.id) == -1) {
+            habitList.push(habit);            
+        } else {
+            return null;  
+        }
     }
 
     var createHTML = function(habit) {
-        instertIntoHabitList(rows[i]);
+        insertIntoHabitList(habit);
         return ('\
           <li>\
-            <div class="habit">\
+            <div class="habit" id="' + habit.id + '">\
               <a href="#" class="delete"  id="' + habit.id + '"><i class="fa fa-times" aria-hidden="true"></i></a>\
               <div class="habit-content">\
                 <h2 class="habitname">' + habit.name + '</h2>\
                 <p>' + habit.duration + ' days remaining</p>\
                 <p>'+ habit.frequency + ' times a week</p>\
                 <p>'+ habit.good + '</p>\
-                <a href="#" id="edit ' + habit.id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>\
+                <a href="#" class="edit" id="' + habit.id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>\
               </div>\
             </div>\
           </li>'
@@ -54,14 +61,15 @@ var main = function() {
 
     var getHabits = function(){
         $.getJSON('/dashboard/habits', (rows) => {
-
+            habitList = [];
             var html = "";
-            nextId = rows.length + 1;
             for( var i = 0; i < rows.length; i++ ) {
 
                 habit = new Habit(rows[i].habit_id, rows[i].name, rows[i].duration, rows[i].frequency, rows[i].good);
                 html += createHTML(habit)
+                nextId = rows[i].id + 1;
             }
+            console.log(habitList);            
             $('#habits').html(html); 
         })
     }
@@ -110,22 +118,15 @@ var main = function() {
         getHabits();
     })
 
-    $("#main ul").on("click", ".#edit", function() {
-        //   var data = {
-        //       id: this.id,
-        //       name: this.name
-        //   }
+    $("#main ul").on("click", ".edit", function() {
+        var habit = habitList[indexInHabitList(this.id)];
 
-        //   $.post()
-        //   console.log('edit')
-        console.log(this.attr('')
-        $('[name="name"]').attr('value', $('')
+        console.log(habit);
         document.getElementById('modal').style.display = 'block';
-
     })
 
     $("input").focus(function(){
-        $(this).once("click keyup", function(e){      
+        $(this).one("click keyup", function(e){      
             $(this).select();
         });
     });
