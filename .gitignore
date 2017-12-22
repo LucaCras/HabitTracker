@@ -1,2 +1,3 @@
+node_modules/\.vscode/
 
-HabitTracker/\.idea/
+HabitRabbit/config/database\.js

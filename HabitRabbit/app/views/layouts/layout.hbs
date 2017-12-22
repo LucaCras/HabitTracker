@@ -1,0 +1,46 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>{{title}}</title>
+        <meta name="description" content="The most advanced habit tracker you've ever seen.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="apple-touch-icon" href="icon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+        <link rel="stylesheet" href="{{ stylesheet }}">
+        <link rel="stylesheet" href="../css/sitewide.css">
+
+        <script src="https://use.fontawesome.com/07f8e1b156.js"></script>
+    </head>
+
+    <body>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+        <script src="../js/plugins.js"></script>
+        <header>
+            <a href="/" class="header-logo">
+                <img src="../images/HabitRabbitLogo.png" alt="HabitRabbit" class="logo">
+            </a>
+
+            <nav>
+                {{# each links}}
+                <a href="/{{ this }}">{{ this }}</a>
+                {{/ each}}
+            </nav>
+        </header>
+
+        {{{body}}}
+        
+        <footer>
+            <p id="copyright">HabitRabbit © 2017 All Rights Reserved.</p>
+        </footer>
+    </body>
+    
+</html>
+
