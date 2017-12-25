@@ -1,49 +1,47 @@
 var home      = require('../app/controllers/home'),
-    dashboard = require('../app/controllers/dashboard'),
-    db        = require('./database.js');
-
-//you can include all your controllers
+    habit     = require('../app/controllers/habit');
 
 module.exports = function (app, passport) {
 
-    app.get('/login', home.login);
-    app.get('/signup', home.home);
+    var loggedIn = (req, res, next) => {
+        if (req.isAuthenticated()) {
+            next();
+        } else {
+            res.redirect('/')
+        }
+    }
 
-    app.get('/', home.loggedIn, home.home); //home
-    app.get('/home', home.loggedIn, home.home); //home
-
-    // app.post('/signup', passport.authenticate('local-signup', {
-    //     successRedirect: '/home', // redirect to the secure profile section
-    //     failureRedirect: '/signup', // redirect back to the signup page if there is an error
-    //     failureFlash: true // allow flash messages
-    // }));
-
-    // // process the login form
-    // app.post('/login', passport.authenticate('local-login', {
-    //     successRedirect: '/dashboard/', // redirect to the secure profile section
-    //     failureRedirect: '/login', // redirect back to the signup page if there is an error
-    //     failureFlash: true // allow flash messages
-    // }));
-
-    // log out
+    app.get('/', home.index)
+    app.get('/register', home.register)
+    app.get('/login', home.login)
+    app.get('/dashboard', loggedIn, home.dashboard)
+    app.get('/analysis', loggedIn, home.analysis)
+    app.get('/profile', loggedIn, home.profile)
+    
     app.get('/logout', (req, res) => {
-        req.logout();
-        res.redirect('/');
+        req.logout()
+        req.session.destroy(() => {
+            res.clearCookie('connect.sid')
+            res.redirect('/')
+        })
     })
 
-    // get habits from the database
-    app.get('/dashboard/habits', dashboard.habits);
+    app.post('/register', passport.authenticate('local-signup', {
+        successRedirect: '/', // redirect to home
+        failureRedirect: '/register', // redirect back to the signup page if there is an error
+        failureFlash: true // allow flash messages
+    }));
 
-    // dashboard page
-    app.get('/dashboard/:user', dashboard.loggedIn, dashboard.dashboard);
-    app.post('/dashboard/:user/add', dashboard.add); // add a habit.
-    app.post('/dashboard/:user/edit', dashboard.edit); // edit a habit.
-    app.post('/dashboard/:user/delete', dashboard.delete); // delete a habit.
+    // process the login form
+    app.post('/login', passport.authenticate('local-login', {
+        successRedirect: '/dashboard', // redirect to the secure dashboard section
+        failureRedirect: '/login', // redirect back to the login page if there is an error
+        failureFlash: true // allow flash messages
+    }));
 
-
-
-    // more to be added later
-
-
-
+    // habit.js
+    app.get('/dashboard/get', loggedIn, habit.get);
+    app.post('/dashboard/add', loggedIn, habit.add); // add a habit.
+    app.post('/dashboard/edit', loggedIn, habit.edit); // edit a habit.
+    app.post('/dashboard/delete', loggedIn, habit.delete); // delete a habit.
 }

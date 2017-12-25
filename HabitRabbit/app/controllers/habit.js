@@ -1,27 +1,17 @@
 var connection = require('../../config/database.js')
 
-module.exports.loggedIn = (req, res, next) => {
-    if(true) {
-        res.render('dashboard', {title: "Dashboard | HabitRabbit", stylesheet: "../css/dashboard.css", links: ["Dashboard", "Support", "Account"]})
-    } else {
-        next()
-    }
-}
-module.exports.dashboard = (req, res) => {
-    res.render('index', {title: "Home | HabitRabbit", stylesheet: "../css/index.css", links: ["Support", "Login"]})
-}
-
-module.exports.habits = (req, res) => {
+var _get = (req, res) => {
+    console.log(req.params.user);
     connection.query('SELECT * FROM HabitRabbit.habits', (err, results) => {
         if(err) {
             console.log(err)
         } else {
-            console.log("success");
+            console.log('success');
         }
     })
 }
 
-module.exports.add = (req, res) => {
+var _add = (req, res) => {
     const name = req.body.name;
     const duration = req.body.duration;
     const frequency = req.body.frequency;
@@ -33,7 +23,7 @@ module.exports.add = (req, res) => {
     })
 }
 
-module.exports.edit = (req, res) => {
+var _edit = (req, res) => {
     const name = req.body.name;
     const duration = req.body.duration;
     const frequency = req.body.frequency;
@@ -46,10 +36,17 @@ module.exports.edit = (req, res) => {
     })
 }
 
-module.exports.delete = (req, res) => {
+var _delete = (req, res) => {
     connection.query('DELETE FROM HabitRabbit.habits WHERE habit_id = ?', req.body.id, (err, rows) => {
         if (err) {
             console.log(err);
         }
     })
+}
+
+module.exports = {
+    get: _get,
+    add: _add,
+    edit: _edit,
+    delete: _delete
 }

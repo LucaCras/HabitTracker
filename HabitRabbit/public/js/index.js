@@ -1,25 +1,13 @@
 var main = function(){
-
-    var username = document.getElementById("username")
-    // var userdatabase = $.getJSON('/users', users => { userdatabase = users; console.log(userdatabase) })
-
-
-    var password = document.getElementById("password"), confirmPassword = document.getElementById("confirmPassword");
-
-    function validatePassword() {
-        if (password.value != confirmPassword.value) {
-            confirmPassword.setCustomValidity("Passwords Don't Match");
-        } else {
-            confirmPassword.setCustomValidity('');
-        }
-    }
-
-    password.onchange = validatePassword;
-    confirmPassword.onkeyup = validatePassword;
-
-    $('#signup-form').submit(function (e) {
-        window.alert("Successfully signed up!\n you should now be able to log in :)");
-    });
+    $('.hide-password').on('click', function(){
+		var $this= $(this),
+			$password_field = $this.prev('input');
+		
+		( 'password' == $password_field.attr('type') ) ? $password_field.attr('type', 'text') : $password_field.attr('type', 'password');
+		( 'Hide' == $this.text() ) ? $this.text('Show') : $this.text('Hide');
+		//focus and move cursor to the end of input field
+		$password_field.putCursorAtEnd();
+	});
 }
 
 $(document).ready(main);

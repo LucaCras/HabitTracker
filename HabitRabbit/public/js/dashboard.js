@@ -90,24 +90,24 @@ var main = function() {
         $('.modal').css('display', 'none');
     })  
 
-    $("#createhabit").submit(function(e) {
-        e.preventDefault();
+    // $("#createhabit").submit(function(e) {
+    //     e.preventDefault();
 
-        var data = $('#createhabit').serializeArray().reduce(function(obj, item) {
-            obj[item.name] = item.value;
-            return obj;
-        }, {});
+    //     var data = $('#createhabit').serializeArray().reduce(function(obj, item) {
+    //         obj[item.name] = item.value;
+    //         return obj;
+    //     }, {});
 
-        console.log(data);
-        var newHabit = new Habit(nextId, data.name, data.duration, data.frequency, data.good)
-        $('#habits').append(createHTML(newHabit))
+    //     console.log(data);
+    //     var newHabit = new Habit(nextId, data.name, data.duration, data.frequency, data.good)
+    //     $('#habits').append(createHTML(newHabit))
 
-        $.post('/dashboard/Luca/add', data)
+    //     $.post('/dashboard/Luca/add', data)
 
-        getHabits();
+    //     getHabits();
 
-        document.getElementById('create-modal').style.display = 'none';
-    })
+    //     document.getElementById('create-modal').style.display = 'none';
+    // })
 
     $("#main ul").on("click",".delete", function() {
         var id = this.id;
@@ -134,20 +134,20 @@ var main = function() {
         }
     })
 
-    $("#edithabit").submit(function(e) {
-        e.preventDefault();
+    // $("#edithabit").submit(function(e) {
+    //     e.preventDefault();
 
-        var data = $('#edithabit').serializeArray().reduce(function(obj, item) {
-            obj[item.name] = item.value;
-            return obj;
-        }, {});
+    //     var data = $('#edithabit').serializeArray().reduce(function(obj, item) {
+    //         obj[item.name] = item.value;
+    //         return obj;
+    //     }, {});
 
-        console.log(data);
+    //     console.log(data);
 
-        $.post("/dashboard/Luca/edit", data);
+    //     $.post("/dashboard/Luca/edit", data);
 
-        getHabits();
-    })
+    //     getHabits();
+    // })
 
     $("input").focus(function() {
         $(this).one("click keyup", function(e){      

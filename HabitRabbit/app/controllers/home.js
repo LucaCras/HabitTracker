@@ -1,21 +1,32 @@
-var loggedIn = function(req, res, next) {
-    if(req.user) {
-        res.render('dashboard', {title: "Dashboard | HabitRabbit", stylesheet: "css/dashboard.css", links: ["Dashboard", "Support", "Account"]})
-    } else {
-        next();
-    }
+var index = (req, res) => {
+    res.render('index', {title: "Home | HabitRabbit", stylesheet: "css/index.css"})
 }
 
-var home = function(req, res) {
-    res.render('index', {title: "Home | HabitRabbit", stylesheet: "css/index.css", links: ["Support", "Login"]})
+var register = (req, res) => {
+    res.render('register', {title: "Register | HabitRabbit", stylesheet: "css/register.css"})
 }
 
-var login = function(req, res) {
-    res.render('login', {title: 'Login | HabitRabbit', stylesheet: "css/login.css", links: ["Support", "Home"]})
+var login = (req, res) => {
+    res.render('login', {title: "Login | HabitRabbit", stylesheet: "css/login.css"})
+}
+
+var dashboard = (req, res) => {
+    res.render('dashboard', {title: "Dashboard | HabitRabbit", stylesheet: "css/dashboard.css"})
+}
+
+var analysis = (req, res) => {
+    res.render('analysis', {title: "Analysis | HabitRabbit", stylesheet: "css/analysis.css"})
+}
+
+var profile = (req, res) => {
+    res.render('profile', {title: "Profile | HabitRabbit", stylesheet: "css/profile.css"})
 }
 
 module.exports = {
-    home: home,
+    index: index,
+    register: register,
     login: login,
-    loggedIn: loggedIn
+    dashboard: dashboard,
+    analysis: analysis,
+    profile: profile
 }

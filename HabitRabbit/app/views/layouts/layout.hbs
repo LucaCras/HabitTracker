@@ -29,9 +29,16 @@
             </a>
 
             <nav>
-                {{# each links}}
-                <a href="/{{ this }}">{{ this }}</a>
-                {{/ each}}
+                <a href="/">Home</a>
+                {{#if isAuthenticated}}
+                <a href="/dashboard">Dashboard</a>
+                <a href="/analysis">Analysis</a>
+                <a href="/profile">Profile</a>
+                <a href="/logout">Logout</a>
+                {{else}}
+                <a href="/login">Login</a>
+                <a href="/register" class="is-selected">Register</a>
+                {{/if}}
             </nav>
         </header>
 
