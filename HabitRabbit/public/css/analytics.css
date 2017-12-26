@@ -1,0 +1,84 @@
+header, footer {
+    display: none !important;
+}
+
+ * {
+     font-family: 'Open Sans', sans-serif;
+ }
+
+.grid-container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: [toolbar] 200px [main] repeat(4, 1fr);  
+    grid-template-areas:
+        "toolbar main main main main";
+}
+
+#toolbar {
+    grid-area: toolbar;
+    background: #202228;
+    color: #72929C;
+}
+
+#toolbar a {
+    color: #72929C;
+
+}
+
+.toolbar-item {
+    text-transform: uppercase;
+    text-align: center;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    cursor: pointer;
+}
+
+.toolbar-item p {
+    font-size: 0.9em;
+    padding-top: 0.2em;
+}
+#main {
+    grid-area: main;
+}
+
+.toolbar-logo {
+    background-color: #3ABCCB;
+    width: 100%;
+    color: white;
+}
+.toolbar-logo h1 {
+    font-family: 'Lobster Two', cursive;
+    text-align: center;
+    margin-top: -15px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.logo {
+    height: auto !important;
+    width: inherit;
+}
+
+.current {
+    background-color: 243353C;
+}
+
+#logout {
+    font-size: 0.9em;
+    padding: 0.4em 1em;
+    border: 2px solid #72929C;
+    border-radius: 4px;
+    position: absolute;
+    bottom: 1.2em;
+    left: 48px;
+    -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+#logout:hover {
+    background-color: #72929C;
+    color: #202228;
+}

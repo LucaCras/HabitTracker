@@ -1,5 +1,5 @@
 body, html {
-    background-color: #eee;
+    background-color: #00CED1;
     overflow-x: hidden;
 }
 
@@ -8,11 +8,11 @@ li {
 }
 
 #toolbar, .toolbar-items {
-    height: 40px;
+
     display: flex;
     align-items: center;
     padding-left: 1em;
-    background: #fefefe;
+    background: #98E1E1;
 }
 #toolbar {
     border-top: 1px solid black;
@@ -24,7 +24,7 @@ li {
 }
 
 #main {
-    background: #eee;
+    background: #006565;
     min-height: 100%;
 }
 

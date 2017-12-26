@@ -14,8 +14,8 @@ var dashboard = (req, res) => {
     res.render('dashboard', {title: "Dashboard | HabitRabbit", stylesheet: "css/dashboard.css"})
 }
 
-var analysis = (req, res) => {
-    res.render('analysis', {title: "Analysis | HabitRabbit", stylesheet: "css/analysis.css"})
+var analytics = (req, res) => {
+    res.render('analytics', {title: "Analytics | HabitRabbit", stylesheet: "css/analytics.css"})
 }
 
 var profile = (req, res) => {
@@ -27,6 +27,6 @@ module.exports = {
     register: register,
     login: login,
     dashboard: dashboard,
-    analysis: analysis,
+    analytics: analytics,
     profile: profile
 }

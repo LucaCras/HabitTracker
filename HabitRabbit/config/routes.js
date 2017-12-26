@@ -15,7 +15,7 @@ module.exports = function (app, passport) {
     app.get('/register', home.register)
     app.get('/login', home.login)
     app.get('/dashboard', loggedIn, home.dashboard)
-    app.get('/analysis', loggedIn, home.analysis)
+    app.get('/analytics', loggedIn, home.analytics)
     app.get('/profile', loggedIn, home.profile)
     
     app.get('/logout', (req, res) => {

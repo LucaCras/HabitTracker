@@ -366,7 +366,7 @@ footer {
 .cd-form .fieldset:last-child {
     margin-bottom: 0;
 }
-.cd-form label {
+.cd-form label, .sub-message {
     font-size: 14px;
     font-size: 0.875rem;
 }
