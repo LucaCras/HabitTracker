@@ -154,8 +154,8 @@ var main = function() {
             $(this).select();
         });
     });
+    
 }
-
 
 $(document).ready(main);
  

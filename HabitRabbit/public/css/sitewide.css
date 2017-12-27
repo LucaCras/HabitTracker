@@ -1,12 +1,9 @@
-* {
-    padding: 0;
-    margin: 0;
-}
-
 *, *:after, *:before {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 
@@ -18,7 +15,7 @@ html, body {
     width: 100%;
     margin: 0;
     padding: 0;
-    font-family: 'PT Sans', Helvetica, sans-serif;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
 /*
@@ -40,7 +37,6 @@ html, body {
  */
 
 a {
-    color: #2f889a;
     text-decoration: none;
 }
 
@@ -111,17 +107,6 @@ input::-ms-clear, textarea::-ms-clear {
 }
 
 /* ==========================================================================
-   Browser Upgrade Prompt
-   ========================================================================== */
-
-.browserupgrade {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
-}
-
-/* ==========================================================================
    Header & Footer Styles
    ========================================================================== */
 
@@ -148,10 +133,6 @@ nav a {
     border-radius: 2em;
 }
 
-nav a:hover {
-    color: darkturquoise;
-    background-color: white;
-}
 
 .logo {
     height: 50px;
@@ -254,23 +235,6 @@ footer {
 }
 
 /* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   These examples override the primary ('mobile first') styles.
-   Modify as content requires.
-   ========================================================================== */
-
-@media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
-}
-
-@media print,
-       (-webkit-min-device-pixel-ratio: 1.25),
-       (min-resolution: 1.25dppx),
-       (min-resolution: 120dpi) {
-    /* Style adjustments for high resolution devices */
-}
-
-/* ==========================================================================
    Print styles.
    Inlined to avoid the additional HTTP request:
    http://www.phpied.com/delay-loading-your-print-css/
@@ -281,8 +245,7 @@ footer {
     *:before,
     *:after {
         background: transparent !important;
-        color: #000 !important; /* Black prints faster:
-                                   http://www.sanbeiji.com/archives/953 */
+        color: #000 !important; /* Black prints faster */
         box-shadow: none !important;
         text-shadow: none !important;
         
@@ -350,6 +313,7 @@ footer {
 /*
  * sign up | log in form styles
  */
+
 .cd-user-modal-container {
     cursor: auto;
 }
@@ -529,11 +493,6 @@ footer {
 .cd-form-bottom-message a {
     color: #FFF;
     text-decoration: underline;
-}
-
-  
-#cd-login.is-selected, #cd-signup.is-selected, #cd-reset-password.is-selected {
-    display: block;
 }
 
 .form-title {

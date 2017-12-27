@@ -1,19 +1,51 @@
-<div class="grid-container">
-    <div id="toolbar">
-        <div class="toolbar-logo">
-            <img class="logo" src="images/HabitRabbitLogoNew.png" alt="HabitRabbit Logo"></img>
-            <h1>HabitRabbit</h1>
+<div id="preloader">
+  <div id="loader"></div>
+  <div class="loader-section section-left"></div>
+  <div class="loader-section section-right"></div>
+</div>
+<div class="grid-wrapper">
+    <div class="topbar topbar-logo">
+        <img class="logo-img" src="./images/logo-light-icon.png"></img>
+        <h3 class="logo-text">Habbit<span>Rabbit</span></h3>
+    </div>
+    <div class="topbar header">
+        <div class="menu-toggle">
+            <i class="fas fa-bars fa-lg"></i>
         </div>
-        <ul class="toolbar-items">
-            <a href="/dashboard"><li class="toolbar-item"><i class="fas fa-home fa-lg"></i><p>Dashboard</p></li></a>
-             <a href="/analytics"><li class="toolbar-item" current><i class="fas fa-chart-bar fa-lg"></i><p>Analytics</p></li></a>
-             <a href="/social"><li class="toolbar-item"><i class="fas fa-users fa-lg"></i><p>Social</p></li></a>
-             <a href="/profile"><li class="toolbar-item"><i class="fas fa-user-circle fa-lg"></i><p>Profile</p></li></a>
-        </ul>
-        <a href="/logout" id="logout"><i class="fas fa-sign-out-alt"></i> Log out</a>
+        <div class="nav-item">
+            <a href class="pf-item nav-link"><img src="https://scontent-lga3-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/c157.0.765.765/25036516_1522877107793926_8260922719688720384_n.jpg" alt="user" class="profile-pic">Luca Cras</a>
+        </div>
     </div>
-    <div id="main">
-    </div>
+    <aside class="left-sidebar">
+        <nav class="sidebar-nav">
+            <ul class="sidebar-items">
+                <li><a href="/dashboard" class="sidebar-item"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="/analytics" class="sidebar-item active"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                <li><a href="/social" class="sidebar-item"><i class="fas fa-users"></i> Social</a></li>
+                <li><a href="/profile" class="sidebar-item"><i class="fas fa-user"></i> Profile</a></li>
+            </ul>
+        </nav>
+        <a class="button orange logout" href="/logout">Log out</a>   
+        <div class="footer">
+            <a href="/settings" class="footer-settings"><i class="fas fa-cog"></i></a>
+            <a href="/logout" class="footer-logout"><i class="fas fa-power-off"></i></a>
+        </div>
+    </aside>
+    <main class="page-wrapper">
+        <div class="page-title">
+            <div class="title">
+                <h3>Analytics</h3>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                    <li class="breadcrumb-item active">Analytics</li>
+                </ol>
+            </div>
+            <div class="buttons">
+                <a class="button" href="#">Upgrade To Pro</a>
+            </div>
+        </div>
+        <div class="footer page-footer"> © 2017 HabitRabbit by Luca & Bram </div>
+    </main>
 </div>
 
 

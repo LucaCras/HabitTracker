@@ -18,6 +18,10 @@ var analytics = (req, res) => {
     res.render('analytics', {title: "Analytics | HabitRabbit", stylesheet: "css/analytics.css"})
 }
 
+var social = (req, res) => {
+    res.render('social', {title: "Social | HabitRabbit", stylesheet: "css/social.css"})
+}
+
 var profile = (req, res) => {
     res.render('profile', {title: "Profile | HabitRabbit", stylesheet: "css/profile.css"})
 }
@@ -28,5 +32,6 @@ module.exports = {
     login: login,
     dashboard: dashboard,
     analytics: analytics,
+    social: social,
     profile: profile
 }
