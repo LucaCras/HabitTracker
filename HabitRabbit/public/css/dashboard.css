@@ -1,1 +1,84 @@
 @import url(webapp.css);
+
+/* habit-cards */
+
+.habit-card {
+    height: 375px;
+    width: 275px;
+    border-color: #d7dfe3;
+    border-radius: 4px;
+    -webkit-box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin: 15px;
+    position: relative;
+}
+
+.habit-card-img-top {
+    width: 100%;
+    border-top-right-radius: calc(.25rem - 1px);
+    border-top-left-radius: calc(.25rem - 1px);
+}
+
+.habit-card-rabbit-img {
+    width: 90px;
+    height: 90px;
+    margin-top: -80px;
+    border-radius: 100%;
+}
+.habit-card-rabbit-img img {
+    height: 90px;
+    border-radius: 100%;
+}
+
+.card-block {
+    height: 100%;   
+    width: 100%;
+    text-align: center;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.habit-card-stats {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-button {
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 35px;
+    margin-left: 0;
+}
+
+.habit-card-stat {
+    width: 33.333%;
+    padding: 0 10px;
+    text-overflow: none;
+}
+
+.habit-card-stat h3 {
+    font-weight: 400;    
+}
+
+.habit-card-delete, .habit-card-edit {
+    color: white;
+    position: absolute;
+    display: none;
+    cursor: pointer;
+    padding: 15px;
+}
+
+.habit-card-edit {
+    right: 0px;
+}
+
+.habit-card:hover .habit-card-delete, .habit-card:hover .habit-card-edit {
+    display: block;
+}

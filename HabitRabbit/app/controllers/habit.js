@@ -1,12 +1,11 @@
 var connection = require('../../config/database.js')
 
 var _get = (req, res) => {
-    console.log(req.params.user);
-    connection.query('SELECT * FROM HabitRabbit.habits', (err, results) => {
+    connection.query('SELECT * FROM HabitRabbit.habits WHERE user_id = ?', req.user.user_id, (err, results) => {
         if(err) {
-            console.log(err)
+            console.log('fail')
         } else {
-            console.log('success');
+            res.send(results);
         }
     })
 }

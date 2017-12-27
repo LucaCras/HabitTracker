@@ -44,19 +44,41 @@ var main = function() {
 
     var createHTML = function(habit) {
         insertIntoHabitList(habit);
+        var link,
+            text,
+            btnClass;
+        if (habit.good == 'true') {
+            link = 'images/habit-card-bg.jpg';
+            text = 'I did it!';
+            btnClass = 'good-button';
+        } else {
+            link = 'images/habit-card-bad-bg.jpg';
+            text= 'I did not do it!'
+            btnClass = '';
+        }
         return ('\
-            <li>\
-                <div class="habit" id="' + habit.id + '">\
-                <a href="#" class="delete"  id="' + habit.id + '"><i class="fa fa-times" aria-hidden="true"></i></a>\
-                <div class="habit-content">\
-                    <h2 class="habitname">' + habit.name + '</h2>\
-                    <p>' + habit.duration + ' days remaining</p>\
-                    <p>'+ habit.frequency + ' times a week</p>\
-                    <p>'+ habit.good + '</p>\
-                    <a href="#" class="edit" id="' + habit.id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>\
+        <div class="habit-card" id="1">\
+            <a href="#" class="habit-card-delete" id="' + habit.id + '"><i class="fas fa-trash-alt"></i></a>\
+            <a class="habit-card-edit" id="' + habit.id + '"><i class="fas fa-edit"></i></a>\
+            <img src="' + link + '" class="habit-card-img-top"></img>\
+            <div class="card-block">\
+                <div class="habit-card-rabbit-img"><img src="images/HabitRabbitLogoNewTransparent.png" alt="user"></div>\
+                <h3 class="habit-card-title">' + habit.name + '</h3>\
+                <p>Once a week</p>\
+                <a href class="button card-button ' + btnClass + '">' + text + '</a>\
+                <div class="habit-card-stats">\
+                    <div class="habit-card-stat">\
+                        <h3 class="">' + habit.duration + '</h3><small>Days</small>\
+                    </div>\
+                    <div class="habit-card-stat">\
+                        <h3 class="">23,469</h3><small>Followers</small>\
+                    </div>\
+                    <div class="habit-card-stat">\
+                        <h3 class="">67%</h3><small>Success</small>\
+                    </div>\
                 </div>\
-                </div>\
-            </li>'
+            </div>\
+        </div>'
         );
     }
 
@@ -64,23 +86,23 @@ var main = function() {
     $('#edithabit').append($(input));
 
     var getHabits = function(){
-        $.getJSON('/dashboard/habits', function() {
-            // habitList = [];
-            // var html = "";
-            // for( var i = 0; i < rows.length; i++ ) {
+        $.getJSON('/dashboard/get', function(result) {
+            console.log(result);
+            habitList = [];
+            var html = "";
+            for( var i = 0; i < result.length; i++ ) {
 
-            //     habit = new Habit(rows[i].habit_id, rows[i].name, rows[i].duration, rows[i].frequency, rows[i].good);
-            //     html += createHTML(habit)
-            //     nextId = rows[i].id + 1;
-            // }         
-            // $('#habits').html(html); 
-            console.log("test");
+                habit = new Habit(result[i].habit_id, result[i].name, result[i].duration, result[i].frequency, result[i].good);
+                html += createHTML(habit)
+                nextId = result[i].id + 1;
+            }         
+            $('.page-content').html(html); 
         })
     }
 
     getHabits();
 
-    setInterval(() => { getHabits() }, 10000)
+    setInterval(() => { getHabits() }, 100000)
 
     $("#add").click(function() {
         $('#create-modal').css('display', 'block');
@@ -109,12 +131,14 @@ var main = function() {
     //     document.getElementById('create-modal').style.display = 'none';
     // })
 
-    $("#main ul").on("click",".delete", function() {
-        var id = this.id;
+    $(".habit-card").on("click", function() {
+        // var id = this.id;
 
-        $.post('/dashboard/Luca/delete', {id: id})
+        // $.post('/dashboard/Luca/delete', {id: id})
 
-        getHabits();
+        // getHabits();
+
+        console.log(this);
     })
 
     $("#main ul").on("click", ".edit", function() {

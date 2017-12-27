@@ -9,6 +9,13 @@ header, footer {
     grid-template-rows: 70px [header-end] 1fr;
 }
 
+.grid-wrapper.small {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 60px [toolbar] 1fr;
+    grid-template-rows: 70px [header-end] 1fr;
+}
+
 /* Preloader */
 
 #preloader {
@@ -141,6 +148,10 @@ header, footer {
     cursor: pointer;
 }
 
+.topbar-logo.small h3 {
+    display: none !important;
+}
+
 .logo-text {
     padding-top: 2px;
     padding-left: 15px;
@@ -189,9 +200,9 @@ header, footer {
 }
 
 .profile-pic {
-    width: 30px;
+    width: 40px;
     border-radius: 100%;
-    margin-right: 10px;
+    margin-right: 15px;
 }
 
 /* Left Sidebar Styles */
@@ -207,6 +218,11 @@ header, footer {
 .sidebar-nav {
     padding: 15px;
 }
+
+.left-sidebar.small .sidebar-nav {
+    padding: 5px;
+}
+
 .sidebar-nav > ul > li {
     margin-bottom: 10px;
     display: list-item
@@ -219,6 +235,11 @@ header, footer {
     font-size: 15px;
     border-radius: 4px;
     white-space: nowrap;
+}
+
+.left-sidebar.small .sidebar-nav ul li a {
+    width: 50px;
+    padding: 12px 15px;
 }
 
 .sidebar-nav ul li a .svg-inline--fa {
@@ -240,6 +261,10 @@ header, footer {
     text-transform: capitalize;
 }
 
+.left-sidebar.small .sidebar-item span {
+    display: none;
+}
+
 .orange {
     background-color: #ffb22b !important;
     border-color: #ffb22b !important;
@@ -247,6 +272,10 @@ header, footer {
 
 .logout {
     margin-left: 25px !important;
+}
+
+.left-sidebar.small .logout {
+    display: none;
 }
 
 .footer {
@@ -267,6 +296,14 @@ header, footer {
     color: #455a64;
 }
 
+.left-sidebar.small .footer a {
+    width: 100%;
+}
+
+.left-sidebar.small .footer a:first-child {
+    display: none;
+}
+
 .footer a:hover, .footer a:focus {
     color: #1e88e5;
 }
@@ -278,6 +315,8 @@ header, footer {
     grid-row: header-end / 3;
     background: #eef5f9;
     position: relative;
+    height: 100%;
+    overflow-y: scroll;
 }
 
 .page-title {
@@ -347,6 +386,17 @@ header, footer {
     box-shadow: 0 14px 26px -12px rgba(239, 83, 80, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(239, 83, 80, 0.2);
 }
 
+.good-button {
+    background-color: #26c6da;
+    border-color: #26c6da;
+}
+
+.page-content {
+    padding: 15px;
+    height: 100%;
+    display: flex;
+}
+
 .page-footer {
     display: flex;
     align-items: center;
@@ -354,4 +404,5 @@ header, footer {
     background-color: white;
     color: #67757c;
     font-weight: 300;
+    position: relative;
 }
