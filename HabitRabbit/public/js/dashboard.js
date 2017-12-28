@@ -197,7 +197,7 @@ var main = function() {
     })
 
     $("input").focus(function() {
-        $(this).one("click keyup", function(e){      
+        $(this).one("click", function(e){      
             $(this).select();
         });
     });

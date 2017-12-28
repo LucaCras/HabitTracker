@@ -105,15 +105,19 @@
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
-    margin: 3% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 40%; /* Could be more or less, depending on screen size */
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    margin: 3% auto;
+    /*15%fromthetopandcentered*/padding: 20px;
+    border-radius: 4px;
+    width: 40%;
+    /*Couldbemoreorless,dependingonscreensize*/box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.5s;
     animation-name: animatetop;
-    animation-duration: 0.5s
+    animation-duration: 0.5s;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
 }
 
 /* Add Animation */
@@ -175,5 +179,5 @@
 }
 
 #submit:hover {
-    background-color: greenyellow;
+    background-color: rgb(163, 255, 102);
 }
