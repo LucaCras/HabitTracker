@@ -5,8 +5,11 @@ header, footer {
 .grid-wrapper {
     height: 100%;
     display: grid;
+    -ms-display: grid;
     grid-template-columns: 240px [toolbar] 1fr;
     grid-template-rows: 70px [header-end] 1fr;
+    -ms-template-columns: 240px [toolbar] 1fr;
+    -ms-template-rows: 70px [header-end] 1fr;
 }
 
 .grid-wrapper.small {
@@ -70,24 +73,20 @@ header, footer {
   @-webkit-keyframes spin {
     0%   { 
       -webkit-transform: rotate(0deg); 
-        -ms-transform: rotate(0deg); 
             transform: rotate(0deg);
     }
     100% { 
       -webkit-transform: rotate(360deg); 
-        -ms-transform: rotate(360deg); 
             transform: rotate(360deg);
     }
   }
   @keyframes spin {
     0%   { 
       -webkit-transform: rotate(0deg); 
-        -ms-transform: rotate(0deg); 
             transform: rotate(0deg);
     }
     100% { 
       -webkit-transform: rotate(360deg); 
-        -ms-transform: rotate(360deg); 
             transform: rotate(360deg);
     }
   }
@@ -112,20 +111,27 @@ header, footer {
   /* Loaded Styles */
 
   .loaded #preloader .loader-section.section-left {
-    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+    -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645,0.045,0.355,1.000);
     transition: all 0.7s 0.3s cubic-bezier(0.645,0.045,0.355,1.000);
   }
   .loaded #preloader .loader-section.section-right {
-    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+    -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645,0.045,0.355,1.000);
     transition: all 0.7s 0.3s cubic-bezier(0.645,0.045,0.355,1.000);
   }
   .loaded #loader {
     opacity: 0;
+    -webkit-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
   }
   .loaded #preloader {
     visibility: hidden;
-    transform:translateY(-100%);
+    -webkit-transform:translateY(-100%);
+            transform:translateY(-100%);
+    -webkit-transition: all 0.3s 1s ease-out;
     transition: all 0.3s 1s ease-out;
   }
 
@@ -134,7 +140,8 @@ header, footer {
 .topbar {
     background-color: #1e88e5;
     color: white;
-    box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.5);
     z-index: 4;
 }
 
@@ -142,9 +149,15 @@ header, footer {
     grid-column: 1 / toolbar;
     grid-row: 1 / header-end;
     background-color: #1880db;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;    
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;    
     cursor: pointer;
 }
 
@@ -166,9 +179,15 @@ header, footer {
 .header {
     grid-column: toolbar / 3;
     grid-row: 1 / header-end;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .header a {
@@ -178,9 +197,9 @@ header, footer {
 .menu-toggle {
     padding: 24px 30px;
     -webkit-transition: background-color 0.2s ease-in-out;
-    -moz-transition: background-color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     cursor: pointer;
 }
 
@@ -210,7 +229,8 @@ header, footer {
 .left-sidebar {
     grid-column: 1 / toolbar;
     grid-row: header-end / 3;
-    box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+    -webkit-box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
     z-index: 3;
     position: relative;
 }
@@ -251,7 +271,8 @@ header, footer {
 .sidebar-nav ul li a.active, .sidebar-nav ul li a.active:hover {
     background-color: #26c6da;
     color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);    
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);    
 }
 .sidebar-nav ul li a:hover {
     color: #26c6da;
@@ -322,11 +343,18 @@ header, footer {
 .page-title {
     background-color: white;
     height: 95px;
-    box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
     z-index: 2;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .title {
@@ -342,6 +370,8 @@ header, footer {
 
 .breadcrumb {
     font-size: 14px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     font-weight: 300;
     line-height: 1.5;
@@ -368,11 +398,11 @@ header, footer {
 }
 
 .button {
-    box-shadow: 0 2px 2px 0 rgba(239, 83, 80, 0.14), 0 3px 1px -2px rgba(239, 83, 80, 0.2), 0 1px 5px 0 rgba(239, 83, 80, 0.12);
+    -webkit-box-shadow: 0 2px 2px 0 rgba(239, 83, 80, 0.14), 0 3px 1px -2px rgba(239, 83, 80, 0.2), 0 1px 5px 0 rgba(239, 83, 80, 0.12);
+            box-shadow: 0 2px 2px 0 rgba(239, 83, 80, 0.14), 0 3px 1px -2px rgba(239, 83, 80, 0.2), 0 1px 5px 0 rgba(239, 83, 80, 0.12);
     background: #fc4b6c;
     border: 1px solid #fc4b6c;
     -webkit-transition: 0.2s ease-in;
-    -o-transition: 0.2s ease-in;
     transition: 0.2s ease-in;
     padding: 7px 12px;
     font-size: 14px;
@@ -394,12 +424,18 @@ header, footer {
 .page-content {
     padding: 15px;
     height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 
 .page-footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     padding-left: 15px;
     background-color: white;
     color: #67757c;
