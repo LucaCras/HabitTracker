@@ -45,6 +45,7 @@ var main = function() {
     var createHTML = function(habit) {
         insertIntoHabitList(habit);
         var link,
+            freqText,
             text,
             btnClass;
         if (habit.good == 'true') {
@@ -56,6 +57,29 @@ var main = function() {
             text= 'I did not do it!'
             btnClass = '';
         }
+        switch (habit.frequency) {
+            case 1: 
+                freqText = 'Once'
+                break;
+            case 2: 
+                freqText = 'Twice'
+                break;
+            case 3: 
+                freqText = 'Three days'
+                break;
+            case 4: 
+                freqText = 'Four days'
+                break;
+            case 5: 
+                freqText = 'Five days'
+                break;
+            case 6: 
+                freqText = 'Six days'
+                break;
+            case 7: 
+                freqText = 'Seven days'
+                break;
+        }
         return ('\
         <div class="habit-card" id="1">\
             <a href="#" class="habit-card-delete" id="' + habit.id + '"><i class="fas fa-trash-alt"></i></a>\
@@ -64,7 +88,7 @@ var main = function() {
             <div class="card-block">\
                 <div class="habit-card-rabbit-img"><img src="images/HabitRabbitLogoNewTransparent.png" alt="user"></div>\
                 <h3 class="habit-card-title">' + habit.name + '</h3>\
-                <p>Once a week</p>\
+                <p>' + freqText + ' a week</p>\
                 <a href class="button card-button ' + btnClass + '">' + text + '</a>\
                 <div class="habit-card-stats">\
                     <div class="habit-card-stat">\
@@ -104,7 +128,7 @@ var main = function() {
 
     setInterval(() => { getHabits() }, 100000)
 
-    $("#add").click(function() {
+    $(".add").click(function() {
         $('#create-modal').css('display', 'block');
     })
 
@@ -112,36 +136,33 @@ var main = function() {
         $('.modal').css('display', 'none');
     })  
 
-    // $("#createhabit").submit(function(e) {
-    //     e.preventDefault();
+    $("#createhabit").submit(function(e) {
+        e.preventDefault();
 
-    //     var data = $('#createhabit').serializeArray().reduce(function(obj, item) {
-    //         obj[item.name] = item.value;
-    //         return obj;
-    //     }, {});
+        var data = $('#createhabit').serializeArray().reduce(function(obj, item) {
+            obj[item.name] = item.value;
+            return obj;
+        }, {});
 
-    //     console.log(data);
-    //     var newHabit = new Habit(nextId, data.name, data.duration, data.frequency, data.good)
-    //     $('#habits').append(createHTML(newHabit))
+        var newHabit = new Habit(nextId, data.name, data.duration, data.frequency, data.good)
+        $('#habits').append(createHTML(newHabit))
 
-    //     $.post('/dashboard/Luca/add', data)
+        $.post('/dashboard/add', data)
 
-    //     getHabits();
+        getHabits();
 
-    //     document.getElementById('create-modal').style.display = 'none';
-    // })
-
-    $(".habit-card").on("click", function() {
-        // var id = this.id;
-
-        // $.post('/dashboard/Luca/delete', {id: id})
-
-        // getHabits();
-
-        console.log(this);
+        document.getElementById('create-modal').style.display = 'none';
     })
 
-    $("#main ul").on("click", ".edit", function() {
+    $(".page-content").on("click", ".habit-card-delete", function() {
+        var id = this.id;
+
+        $.post('/dashboard/delete', {id: id})
+
+        getHabits();
+    })
+
+    $(".page-content").on("click", ".habit-card-edit", function() {
         var index = indexInHabitList(this.id);
         var habit = habitList[index];
         
@@ -151,27 +172,29 @@ var main = function() {
         $('#edit-modal input[name="duration"]').attr('value', habit.duration);
         $('#edit-modal option[value="'+ habit.frequency +'"]').attr('selected','selected');
         $('#edit-modal input[name="id"]').val(habit.id);
-        if(habit.good){
-            $('edit-modal input[value="1"]').attr('checked', true);
+        if(habit.good == "true"){
+            $('edit-modal input[value="true"]').attr('checked', true);
         } else {
-            $('edit-modal input[value="0"]').attr('checked', true);
+            $('edit-modal input[value="false"]').attr('checked', true);
         }
     })
 
-    // $("#edithabit").submit(function(e) {
-    //     e.preventDefault();
+    $("#edithabit").submit(function(e) {
+        e.preventDefault();
 
-    //     var data = $('#edithabit').serializeArray().reduce(function(obj, item) {
-    //         obj[item.name] = item.value;
-    //         return obj;
-    //     }, {});
+        var data = $('#edithabit').serializeArray().reduce(function(obj, item) {
+            obj[item.name] = item.value;
+            return obj;
+        }, {});
 
-    //     console.log(data);
+        console.log(data);
 
-    //     $.post("/dashboard/Luca/edit", data);
+        $.post("/dashboard/edit", data);
 
-    //     getHabits();
-    // })
+        getHabits();
+
+        document.getElementById('edit-modal').style.display = 'none';
+    })
 
     $("input").focus(function() {
         $(this).one("click keyup", function(e){      

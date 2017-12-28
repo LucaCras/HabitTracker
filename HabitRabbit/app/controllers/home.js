@@ -11,7 +11,7 @@ var login = (req, res) => {
 }
 
 var dashboard = (req, res) => {
-    res.render('dashboard', {title: "Dashboard | HabitRabbit", stylesheet: "css/dashboard.css"})
+    res.render('dashboard', {title: "Dashboard | HabitRabbit", stylesheet: "css/dashboard.css", user: req.user.username})
 }
 
 var analytics = (req, res) => {

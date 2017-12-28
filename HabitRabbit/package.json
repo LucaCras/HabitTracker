@@ -17,6 +17,7 @@
     "express": "~4.13.1",
     "express-handlebars": "^3.0.0",
     "express-mailer": "^0.3.0",
+    "express-mysql-session": "^1.2.3",
     "express-session": "latest",
     "fs-extra": "latest",
     "hbs": "~3.1.0",

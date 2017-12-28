@@ -15,7 +15,8 @@ var _add = (req, res) => {
     const duration = req.body.duration;
     const frequency = req.body.frequency;
     const good = req.body.good;
-    connection.query('INSERT INTO HabitRabbit.habits (name, duration, frequency, good) VALUES (?, ?, ?, ?)', [name, duration, frequency, good], (err) => {
+    const user_id = req.user.user_id;
+    connection.query('INSERT INTO HabitRabbit.habits (name, duration, frequency, good, user_id) VALUES (?, ?, ?, ?, ?)', [name, duration, frequency, good, user_id], (err) => {
         if(err) {
             console.log(err)
         }

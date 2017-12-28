@@ -107,50 +107,6 @@ input::-ms-clear, textarea::-ms-clear {
 }
 
 /* ==========================================================================
-   Header & Footer Styles
-   ========================================================================== */
-
-#main a:hover {
-    background: white;
-    color: #333;
-}
-header {
-    padding: 5px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background: darkturquoise;
-}
-
-nav a {
-    font-size: 0.9em;
-    text-decoration: none;
-    color: white;
-    padding: 0.7em 1em;
-    text-transform: uppercase;
-    transition: 0.2s ease-in-out;
-    border-radius: 2em;
-}
-
-
-.logo {
-    height: 50px;
-}
-
-footer {
-    height: 50px;
-    background-color: #eee;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.is-selected {
-    border: 2px solid white;
-}
-
-/* ==========================================================================
    Helper classes
    ========================================================================== */
 
@@ -401,7 +357,7 @@ footer {
 .cd-form input[type=submit] {
     padding: 16px 0;
     cursor: pointer;
-    background: #2f889a;
+    background: #26c6da;    
     color: #FFF;
     font-weight: bold;
     border: none;
@@ -498,3 +454,4 @@ footer {
 .form-title {
     text-align: center;
 }
+

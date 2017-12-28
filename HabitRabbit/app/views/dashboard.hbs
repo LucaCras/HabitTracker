@@ -13,7 +13,7 @@
             <i class="fas fa-bars fa-lg"></i>
         </div>
         <div class="nav-item">
-            <a href class="pf-item nav-link"><img src="https://scontent-lga3-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/c157.0.765.765/25036516_1522877107793926_8260922719688720384_n.jpg" alt="user" class="profile-pic">Luca Cras</a>
+            <a href class="pf-item nav-link"><img src="https://scontent-lga3-1.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/c157.0.765.765/25036516_1522877107793926_8260922719688720384_n.jpg" alt="user" class="profile-pic">{{ user }}</a>
         </div>
     </div>
     <aside class="left-sidebar">
@@ -25,7 +25,7 @@
                 <li><a href="/profile" class="sidebar-item"><i class="fas fa-user"></i> <span>Profile</span></a></li>
             </ul>
         </nav>
-        <a class="button orange logout" href="/logout">Log out</a>   
+        <a class="button orange-button logout" href="/logout">Log out</a>   
         <div class="footer">
             <a href="/settings" class="footer-settings"><i class="fas fa-cog"></i></a>
             <a href="/logout" class="footer-logout"><i class="fas fa-power-off"></i></a>
@@ -41,7 +41,9 @@
                 </ol>
             </div>
             <div class="buttons">
-                <a class="button" href="#">Upgrade To Pro</a>
+                <a class="add button good-button" href="#"><i class="fas fa-plus"></i> &nbsp;Add A Habit</a>
+                <a class="filter button orange-button" href="#"><i class="fas fa-filter"></i> &nbsp;Filter Habits</a>
+                <a class="button" href="#"><i class="fas fa-lock"></i> &nbsp;Upgrade To Pro</a>
             </div>
         </div>
         <div class="page-content">
@@ -49,6 +51,77 @@
         <div class="footer page-footer"> © 2017 HabitRabbit by Luca & Bram </div>
     </main>
 </div>
+
+{{!-- Create & Edit Modal --}}
+
+<div class="modal" id="create-modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h1>add that habit!</h1>
+      <form id="createhabit" action="/add" method="POST">
+        <label for="name">habit name</label>
+        <input name="name" type="text" required placeholder="e.g. Go to the gym">
+        <label for="duration">How many days until you don't need us anymore?</label>
+        
+        <input name="duration" type="number" placeholder="42" min="1" max="5000" required>
+        
+        <fieldset>
+          <label for="frequency">How often do you want to check your progress?</label>
+          
+          <select name="frequency">
+            <option name="frequency" value="1">Once a week</option>
+            <option name="frequency" value="2">Twice a week</option>
+            <option name="frequency" value="3">Three times a week</option>
+            <option name="frequency" value="4">Four times a week</option>
+            <option name="frequency" value="5">Five times a week</option>
+            <option name="frequency" value="6">Six times a week</option>
+            <option name="frequency" value="7">Seven times a week</option>
+          <select>
+        </fieldset>
+        
+        <fieldset>
+          <label for="good">Do you want to get rid of, or start a habit?</label>
+          <br>
+          <input name="good" type="radio" value="true" checked> good</input><br>
+          <input name="good" type="radio" value="false"> bad</input>
+          
+        </fieldset>
+        <input id="submit" type="submit" value="add">
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="edit-modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h1>edit that habit!</h1>
+      <form id="edithabit" action="/dashboard/Luca/edit" method="POST">
+        <label for="name">new habit name</label>
+        <input name="name" type="text" required placeholder="e.g. Go to the gym">
+        <label for="duration">How many days until you don't need us anymore?</label>
+        <input name="duration" type="number" placeholder="42" min="1" max="5000" required>
+        <fieldset>
+          <label for="frequency">How often do you want to check your progress?</label>
+          <select name="frequency">
+            <option name="frequency" value="1">Once a week</option>
+            <option name="frequency" value="2">Twice a week</option>
+            <option name="frequency" value="3">Three times a week</option>
+            <option name="frequency" value="4">Four times a week</option>
+            <option name="frequency" value="5">Five times a week</option>
+            <option name="frequency" value="6">Six times a week</option>
+            <option name="frequency" value="7">Seven times a week</option>
+          <select>
+        </fieldset>
+        <fieldset>
+          <label for="good">Do you want to get rid of, or start a habit?</label>
+          <br>
+          <input name="good" type="radio" value="true"> good</input><br>
+          <input name="good" type="radio" value="false"> bad</input>
+        </fieldset>
+        <input id="submit" type="submit" value="edit">
+      </form>
+    </div>
+  </div>
 
 <script src="js/dashboard.js"></script>
 <script src="js/webapp.js"></script>

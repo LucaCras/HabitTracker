@@ -1,6 +1,7 @@
 var express = require('express');
 
 var app = express();
+var now = new Date();
 
 // Basic dependancies
 var constants = require('constants');
@@ -11,13 +12,13 @@ var path = require('path');
 var exphbs = require('express-handlebars');
 var bodyParser = require('body-parser');
 var dateFormat = require('dateformat');
-var now = new Date();
 
 // Authentication dependancies
 var passport = require('passport');
 var flash = require('connect-flash');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var MySQLStore = require('express-mysql-session');
 require('./config/passport')(passport); // pass passport for configuration
 
 // Basic middleware =============================================================
@@ -42,9 +43,17 @@ app.set('view engine', 'hbs'); // set the view engine to handlebars
 // Authentication middleware ====================================================
 app.use(cookieParser()); // read cookies (needed for auth)
 
+var sessionStore = new MySQLStore({
+    host: 'localhost',
+    user: 'root',
+    password: 'wocky',
+    database: 'HabitRabbit'
+})
+
 app.use(session({
     secret: 'I Love Wockies...',
     resave: true,
+    store: sessionStore,
     saveUninitialized: false
 }));
 

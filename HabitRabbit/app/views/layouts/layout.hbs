@@ -26,8 +26,9 @@
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
         <script src="../js/plugins.js"></script>
         <header>
-            <a href="/" class="header-logo">
-                <img src="../images/HabitRabbitLogo.png" alt="HabitRabbit" class="logo">
+            <a class="header-logo">
+                <img class="logo-img" src="./images/logo-light-icon.png"></img>
+                <h3 class="logo-text">Habbit<span>Rabbit</span></h3>
             </a>
 
             <nav>
@@ -38,8 +39,8 @@
                 <a href="/profile">Profile</a>
                 <a href="/logout">Logout</a>
                 {{else}}
-                <a href="/login">Login</a>
-                <a href="/register" class="is-selected">Register</a>
+                <a href="/login">Sign in</a>
+                <a href="/register" class="register"><i class="fas fa-user-plus"></i> Sign up</a>
                 {{/if}}
             </nav>
         </header>
