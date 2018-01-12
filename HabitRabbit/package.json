@@ -41,5 +41,8 @@
     "serve-favicon": "~2.3.0",
     "simple-encryptor": "latest",
     "underscore": "latest"
+  },
+  "scripts": {
+    "start": "nodemon app.js"
   }
 }

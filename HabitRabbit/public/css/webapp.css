@@ -446,3 +446,8 @@ header, footer {
 .logo-img {
     padding-left: 0 !important;
 }
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+}

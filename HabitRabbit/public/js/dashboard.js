@@ -21,9 +21,11 @@ class Habit {
 }
 
 var main = function() {
-
+    
     var nextId = 0;
     var habitList;
+
+    $('.sidebar-items li:nth-child(1) a').addClass('active');
 
     var indexInHabitList = function(id) {
         for (var i = 0; i < habitList.length; i++) {
@@ -126,7 +128,7 @@ var main = function() {
 
     getHabits();
 
-    setInterval(() => { getHabits() }, 100000)
+    setInterval(() => { getHabits() }, 10000)
 
     $(".add").click(function() {
         $('#create-modal').css('display', 'block');
