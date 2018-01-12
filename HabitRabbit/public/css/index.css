@@ -1,226 +1,131 @@
-#main {
+
+/* /* ==========================================================================
+   Header & Footer Styles for Login
+   ========================================================================== */
+
+   header {
     display: flex;
     flex-direction: row;
-    height: 90vh;
+    justify-content: space-between;
+    align-items: center;
+    background-color:rgb(30, 136, 229,0.1);
+    height: 70px; 
+    box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    position: relative;
+    
 }
 
-.signup {
-    text-align: center;
-    display: inline-block;
-    border: 1px solid tomato;
-    padding: 30px;
-    border-radius: 1em;
-}
-
-.half {
-    width: 50vw;
+.header-logo {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid black;
 }
 
-.how-we-do-it p {
-    max-width: 25vw;
-    text-align: center;
+.logo-img {
+    height: 33px;
+    padding-left: 15px;
 }
 
-#contact {
+.logo-text {
+    color: white;
+    padding-top: 2px;
+    padding-left: 15px;
+    letter-spacing: 0.6px;
+    font-size: 1.25em;
+}
+
+.logo-text span {
+    font-weight: 200;
+}
+
+header nav {
+    padding-right: 15px;
+}
+
+header nav a {
+    color: white;
+    padding: 7px 12px;
+    border-radius: .25rem;
+    transition: 0.2s ease-in;
+}
+
+header nav a:hover {
+    background-color: #ffb22b !important;
+    box-shadow: 0 14px 26px -12px rgba(239, 83, 80, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(239, 83, 80, 0.2) !important;
+}
+
+header nav a.register {
+    background-color: #26c6da;
+    border-color: #26c6da;
+    box-shadow: 0 2px 2px 0 rgba(239, 83, 80, 0.14), 0 3px 1px -2px rgba(239, 83, 80, 0.2), 0 1px 5px 0 rgba(239, 83, 80, 0.12);
+} 
+
+body{
+    background-image: url("../images/cute-cuddly-toy-cartoon-costume.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%; 
+    background-size: cover;
+    overflow: auto;
+    
+}
+footer {
+    background-color: white;
+    height: 55px;
     display: flex;
     align-items: center;
-    flex-direction: column;
-    margin: 0 auto;
+    color: #67757c;
+    font-weight: 300;
+    width: 100%;
+    border-top: 1px solid rgba(120, 130, 140, 0.13);
+    background: #f2f6f8;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ==========================================================================
-   Helper classes
-   ========================================================================== */
-
-/*
- * Hide visually and from screen readers
- */
-
-.hidden {
-    display: none !important;
+footer p {
+    padding: 15px;
+}
+#goodhabit {
+    float: right;
+    height: 100%;
+    width:auto;
+    text-shadow: 2px 2px green;
+    margin-right: 5em;
+    color: white;
+    
+}
+#badhabit{
+    height:100%;
+    float: left;
+    text-shadow: 2px 2px red;
+    color: white;
+    margin-left: 5em;
+    
 }
 
-/*
- * Hide only visually, but have it available for screen readers:
- * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
- *
- * 1. For long content, line feeds are not interpreted as spaces and small width
- *    causes content to wrap 1 word per line:
- *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
- */
-
-.visuallyhidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    -webkit-clip-path: inset(50%);
-    clip-path: inset(50%);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-    white-space: nowrap; /* 1 */
+.buttonholder{
+    margin-top: 20em;    
+}
+#badhabit h1{
+    float: center;
 }
 
-/*
- * Extends the .visuallyhidden class to allow the element
- * to be focusable when navigated to via the keyboard:
- * https://www.drupal.org/node/897638
- */
-
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus {
-    clip: auto;
-    -webkit-clip-path: none;
-    clip-path: none;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-    position: static;
-    width: auto;
-    white-space: inherit;
+#badhabit .register{
+    background-color: rgb(175, 76, 76); 
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;   
 }
 
-/*
- * Hide visually and from screen readers, but maintain layout
- */
-
-.invisible {
-    visibility: hidden;
+#goodhabit .register{
+    background-color: green;    
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
 }
 
-/*
- * Clearfix: contain floats
- *
- * For modern browsers
- * 1. The space content is one way to avoid an Opera bug when the
- *    `contenteditable` attribute is included anywhere else in the document.
- *    Otherwise it causes space to appear at the top and bottom of elements
- *    that receive the `clearfix` class.
- * 2. The use of `table` rather than `block` is only necessary if using
- *    `:before` to contain the top-margins of child elements.
- */
-
-.clearfix:before,
-.clearfix:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
-}
-
-.clearfix:after {
-    clear: both;
-}
-
-/* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   These examples override the primary ('mobile first') styles.
-   Modify as content requires.
-   ========================================================================== */
-
-@media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
-}
-
-@media print,
-       (-webkit-min-device-pixel-ratio: 1.25),
-       (min-resolution: 1.25dppx),
-       (min-resolution: 120dpi) {
-    /* Style adjustments for high resolution devices */
-}
-
-/* ==========================================================================
-   Print styles.
-   Inlined to avoid the additional HTTP request:
-   http://www.phpied.com/delay-loading-your-print-css/
-   ========================================================================== */
-
-@media print {
-    *,
-    *:before,
-    *:after {
-        background: transparent !important;
-        color: #000 !important; /* Black prints faster:
-                                   http://www.sanbeiji.com/archives/953 */
-        box-shadow: none !important;
-        text-shadow: none !important;
-    }
-
-    a,
-    a:visited {
-        text-decoration: underline;
-    }
-
-    a[href]:after {
-        content: " (" attr(href) ")";
-    }
-
-    abbr[title]:after {
-        content: " (" attr(title) ")";
-    }
-
-    /*
-     * Don't show links that are fragment identifiers,
-     * or use the `javascript:` pseudo protocol
-     */
-
-    a[href^="#"]:after,
-    a[href^="javascript:"]:after {
-        content: "";
-    }
-
-    pre {
-        white-space: pre-wrap !important;
-    }
-    pre,
-    blockquote {
-        border: 1px solid #999;
-        page-break-inside: avoid;
-    }
-
-    /*
-     * Printing Tables:
-     * http://css-discuss.incutio.com/wiki/Printing_Tables
-     */
-
-    thead {
-        display: table-header-group;
-    }
-
-    tr,
-    img {
-        page-break-inside: avoid;
-    }
-
-    p,
-    h2,
-    h3 {
-        orphans: 3;
-        widows: 3;
-    }
-
-    h2,
-    h3 {
-        page-break-after: avoid;
-    }
-}
+@import url(login.css);

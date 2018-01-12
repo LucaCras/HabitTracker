@@ -11,11 +11,13 @@
         <link rel="manifest" href="site.webmanifest">
         <link rel="apple-touch-icon" href="icon.png">
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+        <link href="https://fonts.googleapis.com/css?family=Poppins:200,400,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,700" rel="stylesheet">
 
         <link rel="stylesheet" href="{{ stylesheet }}">
         <link rel="stylesheet" href="../css/sitewide.css">
 
-        <script src="https://use.fontawesome.com/07f8e1b156.js"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
     </head>
 
     <body>
@@ -24,19 +26,27 @@
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
         <script src="../js/plugins.js"></script>
         <header>
-            <a href="/" class="header-logo">
-                <img src="../images/HabitRabbitLogo.png" alt="HabitRabbit" class="logo">
+            <a class="header-logo">
+                <img class="logo-img" src="./images/logo-light-icon.png"></img>
+                <h3 class="logo-text">Habbit<span>Rabbit</span></h3>
             </a>
 
             <nav>
-                {{# each links}}
-                <a href="/{{ this }}">{{ this }}</a>
-                {{/ each}}
+                <a href="/">Home</a>
+                {{#if isAuthenticated}}
+                <a href="/dashboard">Dashboard</a>
+                <a href="/analytics">Analytics</a>
+                <a href="/profile">Profile</a>
+                <a href="/logout">Logout</a>
+                {{else}}
+                <a href="/login">Sign in</a>
+                <a href="/register" class="register"><i class="fas fa-user-plus"></i> Sign up</a>
+                {{/if}}
             </nav>
         </header>
 
         {{{body}}}
-        
+
         <footer>
             <p id="copyright">HabitRabbit © 2017 All Rights Reserved.</p>
         </footer>

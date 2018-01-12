@@ -1,37 +1,92 @@
-body, html {
-    background-color: #eee;
-    overflow-x: hidden;
+/* habit-cards */
+
+.habit-card {
+    height: 375px;
+    width: 275px;
+    border-color: #d7dfe3;
+    border-radius: 4px;
+    -webkit-box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin: 15px;
+    position: relative;
 }
 
-li {
-    list-style: none;
+.habit-card-img-top {
+    width: 100%;
+    border-top-right-radius: calc(.25rem - 1px);
+    border-top-left-radius: calc(.25rem - 1px);
 }
 
-#toolbar, .toolbar-items {
-    height: 40px;
+.habit-card-rabbit-img {
+    width: 90px;
+    height: 90px;
+    margin-top: -80px;
+    border-radius: 100%;
+}
+.habit-card-rabbit-img img {
+    height: 90px;
+    border-radius: 100%;
+}
+
+.card-block {
+    height: 100%;   
+    width: 100%;
+    text-align: center;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.habit-card-stats {
+    width: 100%;
     display: flex;
     align-items: center;
-    padding-left: 1em;
-    background: #fefefe;
-}
-#toolbar {
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    justify-content: space-between;
 }
 
-.toolbar-item {
-    padding: 0 1em;
+.card-button {
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 35px;
+    margin-left: 0;
 }
 
-#main {
-    background: #eee;
-    min-height: 100%;
+.habit-card-stat {
+    width: 33.333%;
+    padding: 0 10px;
+    text-overflow: none;
 }
+
+.habit-card-stat h3 {
+    font-weight: 400;    
+}
+
+.habit-card-delete, .habit-card-edit {
+    color: white;
+    position: absolute;
+    display: none;
+    cursor: pointer;
+    padding: 15px;
+}
+
+.habit-card-edit {
+    right: 0px;
+}
+
+.habit-card:hover .habit-card-delete, .habit-card:hover .habit-card-edit {
+    display: block;
+}
+
+/* Modal Styling */
 
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 5; /* Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -41,18 +96,26 @@ li {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
+.modal h1 {
+    padding-bottom: 30px;
+}
+
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
-    margin: 3% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 40%; /* Could be more or less, depending on screen size */
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    margin: 3% auto;
+    /*15%fromthetopandcentered*/padding: 20px;
+    border-radius: 4px;
+    width: 40%;
+    /*Couldbemoreorless,dependingonscreensize*/box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.5s;
     animation-name: animatetop;
-    animation-duration: 0.5s
+    animation-duration: 0.5s;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
 }
 
 /* Add Animation */
@@ -81,78 +144,38 @@ li {
     cursor: pointer;
 }
 
+.modal-content input[type="text"], .modal-content input[type="number"], .modal-content select {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.modal input, .modal select {
+    margin: 0 0 15px;
+}
+
+.modal input[value="true"] {
+    margin: 0;
+}
+
 #submit {
     padding: 0.75em 3em;
-    background-color: skyblue;
+    background-color: #26c6da;
     border: none;
     border-radius: 4px;
     color: white;
     cursor: pointer;
-}
-
-#submit:hover {
-    background-color: greenyellow;
-}
-
-#habits {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-.habit {
-    height: 300px;
-    width: 300px;
-    background: tomato;
-    margin: 2em;
-}
-
-.habit-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    height: inherit;  
-    margin-top: -1.4em; 
-}
-
-.habit-content * {
-    padding: 0.5em;
     margin: 0;
 }
 
-.habit p, .habit h2 {
-    color: white;
-    text-transform: capitalize;
-}
-
-.delete {
-    position: relative;
-    top: 7px;
-    padding: 0.6em 0.8em;
-}
-
-.habitname {
-    font-weight: bold;
-}
-
-#edit:hover {
-    background-color: #fff; 
-}
-
-#edit {
-    color: white;
-    border: 2px solid white;
-    border-radius: 5px;
-    padding: 0.4em 1.1em 0.25em 1em;
-    transition: ease-in-out 0.15s;
-}
-
-footer {
-    background-color: skyblue !important;
-    color: white;
-    margin: 0 !important;
+#submit:hover {
+    background-color: rgb(163, 255, 102);
 }
