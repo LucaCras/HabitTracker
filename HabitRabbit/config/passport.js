@@ -1,5 +1,5 @@
 var LocalStrategy   = require('passport-local').Strategy;
-var FaceBookStrategy = require('passport-facebook').Strategy;
+var FacebookStrategy = require('passport-facebook');
 
 var bcrypt = require('bcryptjs');
 var constant = require('../config/constants');
@@ -116,7 +116,7 @@ module.exports = function(passport) {
 
     passport.use(new FacebookStrategy({
         clientID: 753311714859141,
-        clientSecret: e2a2a3c70210316f90703971980b98dc,
+        clientSecret: 'e2a2a3c70210316f90703971980b98dc',
         callbackURL: 'http://localhost:8042/fblogin',
         profileFields:['id','displayName','emails']
         }, function(accessToken, refreshToken, profile, done) {
@@ -125,19 +125,30 @@ module.exports = function(passport) {
                 username: profile.displayName,
                 email: profile.emails[0].value
             }
+
+            
     
-            /* save if new */
-            user.findOne({email:me.email}, function(err, u) {
-                if(!u) {
-                    me.save(function(err, me) {
-                        if(err) return done(err);
-                        done(null,me);
-                    });
-                } else {
-                    console.log(u);
-                    done(null, u);
+            // find a user whose email is the same as the forms email
+            // we are checking to see if the user trying to login already exists
+            connection.query('SELECT * FROM users WHERE email = ?', newUser.email, function(err, result) {
+
+                
+                // if there are any errors, return the error before anything else
+                if (err)
+                    return done(null, false, req.flash('error', err)); // req.flash is the way to set flashdata using connect-flash
+
+                // if no user is found create new user from facebook data and login
+                if (!result.length) {
+                    connection.query('INSERT INTO HabitRabbit.users (username, email) VALUES (?, ?)', [newUser.username, newUser.email], function(err, result) {
+                        if (err)
+                            console.log(err);
+                        return done(null, result[0])
+                    })
                 }
+
+                return done(null, result[0]);
             });
+
       }
     ));
 

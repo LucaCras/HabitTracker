@@ -1,21 +1,54 @@
 var main = () => {
+
+    var data = {}
+    var getData = function() {
+        $.getJSON('/analytics/data', function(result) {
+            console.log(result);
+           
+            data = {
+                datasets: [{
+                    data: [result.badHabits, result.goodHabits],
+                    backgroundColor: ['#FC4B6C', '#26C6DA']
+                }],
+            
+                // These labels appear in the legend and in the tooltips when hovering different arcs
+                labels: [
+                    'Bad Habits',
+                    'Good Habits'
+                ]
+            };
+
+            // And for a doughnut chart
+            setTimeout(function() {
+                var myDoughnutChart = new Chart(Doughnut, {
+                    type: 'doughnut',
+                    data: data,
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Good and Bad habits',
+                            fontSize: 20
+                        },
+                        layout: {
+                            padding: {
+                                left: 0,
+                                right: 0,
+                                top: 20,
+                                bottom: 20
+                            }
+                        }
+                    }
+                })
+            })
+        })
+    }
+
+    getData();
+
     $('.sidebar-items li:nth-child(2) a').addClass('active');
 
     var Doughnut = $('#myChart');
     var Bar = $('#barChart');
-
-    data = {
-        datasets: [{
-            data: [55, 45],
-            backgroundColor: ['#FC4B6C', '#26C6DA']
-        }],
-    
-        // These labels appear in the legend and in the tooltips when hovering different arcs
-        labels: [
-            'Bad Habits',
-            'Good Habits'
-        ]
-    };
 
     barData = {
         datasets: [{
@@ -43,27 +76,8 @@ var main = () => {
 
     // And for a doughnut chart
     setTimeout(function() {
-        var myDoughnutChart = new Chart(Doughnut, {
-            type: 'doughnut',
-            data: data,
-            options: {
-                title: {
-                    display: true,
-                    text: 'Good and Bad habits',
-                    fontSize: 20
-                },
-                layout: {
-                    padding: {
-                        left: 0,
-                        right: 0,
-                        top: 20,
-                        bottom: 20
-                    }
-                }
-            }
-        });
 
-        var myDoughnutChart = new Chart(Bar, {
+        var myBarChart = new Chart(Bar, {
             type: 'bar',
             data: barData,
             options: {

@@ -1,5 +1,6 @@
 var home      = require('../app/controllers/home'),
-    habit     = require('../app/controllers/habit');
+    habit     = require('../app/controllers/habit'),
+    analytics = require('../app/controllers/analytics');
 
 module.exports = function (app, passport) {
 
@@ -40,9 +41,17 @@ module.exports = function (app, passport) {
         failureFlash: true // allow flash messages
     }));
 
+    app.get('/fblogin', passport.authenticate('facebook', { 
+        successRedirect: '/dashboard',
+        scope: ['email']
+    }));
+
     // habit.js
     app.get('/dashboard/get', loggedIn, habit.get);
     app.post('/dashboard/add', loggedIn, habit.add); // add a habit.
     app.post('/dashboard/edit', loggedIn, habit.edit); // edit a habit.
     app.post('/dashboard/delete', loggedIn, habit.delete); // delete a habit.
+
+    // analytics.js
+    app.get('/analytics/data', loggedIn, analytics.getData) // get data for analytics charts
 }
