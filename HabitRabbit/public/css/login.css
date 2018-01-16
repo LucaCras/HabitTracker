@@ -64,8 +64,8 @@ header nav a.register {
 
 .cd-user-modal-container {
     padding-top: 4.75rem;
+    padding-bottom: 4.75rem;
     background-color: #eef5f9;
-    height: calc(100vh - 125px);
 }
 #cd-login {
     background: white;
@@ -100,9 +100,23 @@ form a {
     color: #1e88e5;
 }
 
+#facebook-login {
+    width: 100%;
+    padding: 16px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background-color: #4867AA;
+    margin-top: 10px;
+    border-radius: 0.25em;
+}
+
 /* Footer styles */
 
 footer {
+    position: static !important;
     background-color: white;
     height: 55px;
     display: flex;

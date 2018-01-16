@@ -1,4 +1,5 @@
 var LocalStrategy   = require('passport-local').Strategy;
+var FaceBookStrategy = require('passport-facebook').Strategy;
 
 var bcrypt = require('bcryptjs');
 var constant = require('../config/constants');
@@ -106,6 +107,39 @@ module.exports = function(passport) {
         });
 
     }));
+
+    // =========================================================================
+    // FACEBOOK LOGIN =============================================================
+    // =========================================================================
+    // we are using named strategies since we have one for login and one for signup and one for facebook
+    // by default, if there was no name, it would just be called 'local'
+
+    passport.use(new FacebookStrategy({
+        clientID: 753311714859141,
+        clientSecret: e2a2a3c70210316f90703971980b98dc,
+        callbackURL: 'http://localhost:8042/fblogin',
+        profileFields:['id','displayName','emails']
+        }, function(accessToken, refreshToken, profile, done) {
+            console.log(profile);
+            var newUser = {
+                username: profile.displayName,
+                email: profile.emails[0].value
+            }
+    
+            /* save if new */
+            user.findOne({email:me.email}, function(err, u) {
+                if(!u) {
+                    me.save(function(err, me) {
+                        if(err) return done(err);
+                        done(null,me);
+                    });
+                } else {
+                    console.log(u);
+                    done(null, u);
+                }
+            });
+      }
+    ));
 
 };
 
