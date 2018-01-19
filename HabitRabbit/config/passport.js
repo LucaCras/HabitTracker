@@ -1,4 +1,5 @@
 var LocalStrategy   = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook');
 
 var bcrypt = require('bcryptjs');
 var constant = require('../config/constants');
@@ -106,6 +107,50 @@ module.exports = function(passport) {
         });
 
     }));
+
+    // =========================================================================
+    // FACEBOOK LOGIN =============================================================
+    // =========================================================================
+    // we are using named strategies since we have one for login and one for signup and one for facebook
+    // by default, if there was no name, it would just be called 'local'
+
+    passport.use(new FacebookStrategy({
+        clientID: 753311714859141,
+        clientSecret: 'e2a2a3c70210316f90703971980b98dc',
+        callbackURL: 'http://localhost:8042/fblogin',
+        profileFields:['id','displayName','emails']
+        }, function(accessToken, refreshToken, profile, done) {
+            console.log(profile);
+            var newUser = {
+                username: profile.displayName,
+                email: profile.emails[0].value
+            }
+
+            
+    
+            // find a user whose email is the same as the forms email
+            // we are checking to see if the user trying to login already exists
+            connection.query('SELECT * FROM users WHERE email = ?', newUser.email, function(err, result) {
+
+                
+                // if there are any errors, return the error before anything else
+                if (err)
+                    return done(null, false, req.flash('error', err)); // req.flash is the way to set flashdata using connect-flash
+
+                // if no user is found create new user from facebook data and login
+                if (!result.length) {
+                    connection.query('INSERT INTO HabitRabbit.users (username, email) VALUES (?, ?)', [newUser.username, newUser.email], function(err, result) {
+                        if (err)
+                            console.log(err);
+                        return done(null, result[0])
+                    })
+                }
+
+                return done(null, result[0]);
+            });
+
+      }
+    ));
 
 };
 

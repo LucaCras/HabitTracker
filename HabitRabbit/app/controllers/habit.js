@@ -44,9 +44,28 @@ var _delete = (req, res) => {
     })
 }
 
+var _complete = (req, res) => {
+    connection.query('UPDATE HabitRabbit.habits SET succesful = succesful + 1, complete = "true" WHERE habit_id = ?', req.body.id, (err, rows) => {
+        if (err) {
+            console.log(err) 
+        }
+    })
+}
+
+var _reset = (req, res) => {
+    connection.query('UPDATE HabitRabbit.habits SET complete = "false"', (err, rows) => {
+        if (err) {
+            console.log(err) 
+        }
+        res.end()
+    })
+}
+
 module.exports = {
     get: _get,
     add: _add,
     edit: _edit,
-    delete: _delete
+    delete: _delete,
+    complete: _complete,
+    reset: _reset
 }

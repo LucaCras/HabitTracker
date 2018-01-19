@@ -41,6 +41,17 @@ a {
 }
 
 /*
+ * Change default cursor on button to pointer
+ */
+
+button {
+    cursor: pointer;
+}
+
+
+
+
+/*
  * Remove default list item style
  */
 

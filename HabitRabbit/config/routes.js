@@ -1,5 +1,6 @@
 var home      = require('../app/controllers/home'),
-    habit     = require('../app/controllers/habit');
+    habit     = require('../app/controllers/habit'),
+    analytics = require('../app/controllers/analytics');
 
 module.exports = function (app, passport) {
 
@@ -12,12 +13,12 @@ module.exports = function (app, passport) {
     }
 
     app.get('/', home.index)
-    app.get('/register', home.register)
-    app.get('/login', home.login)
-    app.get('/dashboard', loggedIn, home.dashboard)
-    app.get('/analytics', loggedIn, home.analytics)
-    app.get('/social', loggedIn, home.social)
-    app.get('/profile', loggedIn, home.profile)
+    app.get('/reg*sters?', home.register)
+    app.get('/logi?o?ns?', home.login)
+    app.get('/dashboards?', loggedIn, home.dashboard)
+    app.get('/analy?i?tics?', loggedIn, home.analytics)
+    app.get('/soci?j?als?', loggedIn, home.social)
+    app.get('/profiles?', loggedIn, home.profile)
     
     app.get('/logout', (req, res) => {
         req.logout()
@@ -40,9 +41,19 @@ module.exports = function (app, passport) {
         failureFlash: true // allow flash messages
     }));
 
+    app.get('/fblogin', passport.authenticate('facebook', { 
+        successRedirect: '/dashboard',
+        scope: ['email']
+    }));
+
     // habit.js
     app.get('/dashboard/get', loggedIn, habit.get);
     app.post('/dashboard/add', loggedIn, habit.add); // add a habit.
     app.post('/dashboard/edit', loggedIn, habit.edit); // edit a habit.
     app.post('/dashboard/delete', loggedIn, habit.delete); // delete a habit.
+    app.post('/dashboard/complete', loggedIn, habit.complete); // complete a habit
+    app.get('/dashboard/reset', loggedIn, habit.reset) // reset habits to not completed
+
+    // analytics.js
+    app.get('/analytics/data', loggedIn, analytics.getData) // get data for analytics charts
 }
