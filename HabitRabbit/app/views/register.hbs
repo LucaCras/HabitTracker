@@ -1,0 +1,51 @@
+<div class="cd-user-modal-container">
+    <div id="cd-signup">
+        <form class="cd-form" action="/register" method="POST">
+            <div class="form-title">
+                <img id="login-logo" src="images/HabitRabbitLogoNewTransparent.png"></img>
+                <h2>Sign up for your free Account</h2>
+                <p>Use HabitRabbit and all it's amazing features for free, forever!</p>
+            </div>
+            <p class="fieldset">
+                <label class="image-replace cd-username" for="signup-username">Username</label>
+                <input name="username" class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
+                <span class="cd-error-message">Error message here!</span>
+            </p>
+
+            <p class="fieldset">
+                <label class="image-replace cd-email" for="signup-email">E-mail</label>
+                <input name="email" class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
+                <span class="cd-error-message">Error message here!</span>
+            </p>
+
+            <p class="fieldset">
+                <label class="image-replace cd-password" for="signup-password">Password</label>
+                <input name="password" class="full-width has-padding has-border" id="signup-password" type="password"  placeholder="Password">
+                <a href="#0" class="hide-password">Show</a>
+                <span class="cd-error-message">Error message here!</span>
+            </p>
+
+            <p class="fieldset">
+                <label class="image-replace cd-password" for="signup-password-repeat">Repeat Password</label>
+                <input name="password-repeat" class="full-width has-padding has-border" id="signup-password-repeat" type="password"  placeholder="Repeat Password">
+                <a href="#0" class="hide-password">Show</a>
+                <span class="cd-error-message">Error message here!</span>
+            </p>
+
+            <p class="fieldset">
+                <input type="checkbox" id="accept-terms" required>
+                <label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
+            </p>
+
+            <p class="fieldset">
+                <input class="full-width has-padding" type="submit" value="Create account">
+            </p>
+        <p class="sub-message">Already have an account? <a href="/login">Log in.</a></p>
+            
+        </form>
+    </div>  
+</div>
+
+
+<script src="../js/index.js" type="text/javascript"></script>
+

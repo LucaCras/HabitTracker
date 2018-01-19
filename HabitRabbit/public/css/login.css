@@ -1,0 +1,133 @@
+/* ==========================================================================
+   Header & Footer Styles for Login
+   ========================================================================== */
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1e88e5;
+    height: 70px; 
+    box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    position: relative;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-img {
+    height: 33px;
+    padding-left: 15px;
+}
+
+.logo-text {
+    color: white;
+    padding-top: 2px;
+    padding-left: 15px;
+    letter-spacing: 0.6px;
+    font-size: 1.25em;
+}
+
+.logo-text span {
+    font-weight: 200;
+}
+
+header nav {
+    padding-right: 15px;
+}
+
+header nav a {
+    color: white;
+    padding: 7px 12px;
+    border-radius: .25rem;
+    transition: 0.2s ease-in;
+}
+
+header nav a:hover {
+    background-color: #ffb22b !important;
+    box-shadow: 0 14px 26px -12px rgba(239, 83, 80, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(239, 83, 80, 0.2) !important;
+}
+
+header nav a.register {
+    background-color: #26c6da;
+    border-color: #26c6da;
+    box-shadow: 0 2px 2px 0 rgba(239, 83, 80, 0.14), 0 3px 1px -2px rgba(239, 83, 80, 0.2), 0 1px 5px 0 rgba(239, 83, 80, 0.12);
+}
+
+
+/* Form Styles */
+
+.cd-user-modal-container {
+    padding-top: 4.75rem;
+    padding-bottom: 4.75rem;
+    background-color: #eef5f9;
+}
+#cd-login {
+    background: white;
+    background-size: cover;
+    border-radius: 0.25rem;
+    border-color: #d7dfe3;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+    min-width: 30%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#login-logo {
+    width: 75px;
+}
+
+.form-title {
+    text-align: center;
+}
+
+.form-title h2 {
+    color: #1e88e5;
+    font-size: 2em;
+}
+
+.form-title p {
+    padding-top: 1em;
+    color: #1880db;
+}
+
+form a {
+    color: #1e88e5;
+}
+
+#facebook-login {
+    width: 100%;
+    padding: 16px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background-color: #4867AA;
+    margin-top: 10px;
+    border-radius: 0.25em;
+}
+
+/* Footer styles */
+
+footer {
+    position: static !important;
+    background-color: white;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    color: #67757c;
+    font-weight: 300;
+    width: 100%;
+    border-top: 1px solid rgba(120, 130, 140, 0.13);
+    background: #f2f6f8;
+}
+
+footer p {
+    padding: 15px;
+}

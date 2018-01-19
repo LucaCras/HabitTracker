@@ -1,0 +1,37 @@
+{{!-- Page Title --}}
+
+<div class="page-title">
+    <div class="title">
+        <h3>Analytics</h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+            <li class="breadcrumb-item active">Analytics</li>
+        </ol>
+    </div>
+    <div class="buttons">
+        <a class="button" href="#">Upgrade To Pro</a>
+    </div>
+</div>
+
+{{!-- Page Content --}}
+
+<div class="page-content">
+
+    <div class="chart">
+        <div class="circle">
+             <canvas id="myChart" width="400" height="400"></canvas>    
+        </div>       
+    </div>
+
+    <div class="chart">
+        <div class="bar">
+             <canvas id="barChart" width="400" height="400"></canvas>    
+        </div>       
+    </div>
+
+</div>
+
+{{!-- End of Page Content --}}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+

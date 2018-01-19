@@ -1,0 +1,60 @@
+<div class="cd-user-modal-container">
+    <div id="cd-login">
+        <form class="cd-form" action="/login" method="POST">
+        <div class="form-title">
+            <img id="login-logo" src="images/HabitRabbitLogoNewTransparent.png"></img>
+            <h2>Log in to HabitRabbit</h2>
+            <p>Check how you are doing and enjoy!</p>
+        </div>
+        <p class="fieldset">
+            <label class="image-replace cd-username" for="signin-username">Username</label>
+            <input name="username" class="full-width has-padding has-border" id="signin-username" type="text" placeholder="Username">
+            <span class="cd-error-message">Error message here!</span>
+        </p>
+
+        <p class="fieldset">
+            <label class="image-replace cd-password" for="signin-password">Password</label>
+            <input name="password" class="full-width has-padding has-border" id="signin-password" type="password"  placeholder="Password">
+            <a href="#0" class="hide-password">Show</a>
+            <span class="cd-error-message">Error message here!</span>
+        </p>
+
+        <p class="fieldset">
+            <input type="checkbox" id="remember-me" checked>
+            <label for="remember-me">Remember me</label>
+        </p>
+
+        <p class="fieldset">
+            <input class="full-width" type="submit" value="Login">
+            <a href="/fblogin" id="facebook-login"><i class="fab fa-facebook-square"></i>&nbsp; Log in with Facebook</a>            
+        </p>
+        <p class="sub-message">Don't have an account yet? <a href="/register">Sign up.</a></p>
+        </form>
+        
+    </div>
+</div>
+
+<script src="../js/index.js" type="text/javascript"></script>
+
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '753311714859141',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.11'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
