@@ -1,0 +1,6 @@
+habit_id,"name",duration,frequency,"good",user_id,succesful,unsuccesful,"complete"
+1,"Hallo",230,3,"false",1,32,0,"false"
+2,"Dag",120,7,"true",3,0,0,"false"
+14,"go to the gym",42,1,"true",2,6,100,"false"
+15,"minder bier zuipen",120,7,"false",1,0,0,"false"
+16,"wqewe",12,1,"true",1,0,0,"false"
