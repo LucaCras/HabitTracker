@@ -8,7 +8,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color:rgb(30, 136, 229,0.1);
+    background-color:rgba(30, 136, 229,0.7)!important;
     height: 70px; 
     box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.5);
     z-index: 2;
@@ -78,6 +78,8 @@ footer {
     color: #67757c;
     font-weight: 300;
     width: 100%;
+    position: relative !important;
+    bottom: 0;
     border-top: 1px solid rgba(120, 130, 140, 0.13);
     background: #f2f6f8;
 }
