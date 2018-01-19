@@ -51,6 +51,8 @@ module.exports = function (app, passport) {
     app.post('/dashboard/add', loggedIn, habit.add); // add a habit.
     app.post('/dashboard/edit', loggedIn, habit.edit); // edit a habit.
     app.post('/dashboard/delete', loggedIn, habit.delete); // delete a habit.
+    app.post('/dashboard/complete', loggedIn, habit.complete); // complete a habit
+    app.get('/dashboard/reset', loggedIn, habit.reset) // reset habits to not completed
 
     // analytics.js
     app.get('/analytics/data', loggedIn, analytics.getData) // get data for analytics charts

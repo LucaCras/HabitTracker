@@ -1,26 +1,25 @@
 class Habit {
-    constructor(id, name, duration, frequency, good) {
+    constructor(id, name, duration, frequency, good, succesful, unsuccesful, completed) {
         this.id = id;
         this.name = name;
         this.duration = duration;
         this.frequency = frequency;
         this.good = good;
-        this.succesful = 0;
-        this.unsuccesful = 0;
-    }
-
-    incrementSuccesful(){
-        this.succesful += 1;
-    }
-    incrementUnsuccesful(){
-        this.unsuccesful += 1;
-    }
-    getSuccesRatio(){
-        return this.succesful / this.duration;
+        this.succesful = succesful;
+        this.unsuccesful = unsuccesful;
+        this.completed = completed;
     }
 }
 
 var main = function() {
+
+    var getSuccesRatio = (succesful, unsuccesful) => {
+        if (succesful == 0 && unsuccesful == 0) {
+            return 100
+        } else {
+            return Math.round(100 * (succesful / (succesful + unsuccesful)));
+        }
+    }
     
     var nextId = 0;
     var habitList;
@@ -49,15 +48,29 @@ var main = function() {
         var link,
             freqText,
             text,
-            btnClass;
+            btnClass,
+            disabled;
+        
         if (habit.good == 'true') {
             link = 'images/habit-card-bg.jpg';
-            text = 'I did it!';
-            btnClass = 'good-button';
+            if (habit.completed == 'false') {
+                text = 'I did it!';
+                btnClass = 'good-button';
+            } else {
+                text = 'Habit Completed!!!';
+                btnClass = '';
+                disabled = 'disabled';
+            }
         } else {
             link = 'images/habit-card-bad-bg.jpg';
-            text= 'I did not do it!'
-            btnClass = '';
+            if (habit.completed == 'false') {
+                text= 'I did not do it!'
+                btnClass = '';
+            } else {
+                text = 'Another day conquered!!!';
+                btnClass = '';
+                disabled = 'disabled';
+            }
         }
         switch (habit.frequency) {
             case 1: 
@@ -82,6 +95,10 @@ var main = function() {
                 freqText = 'Seven days'
                 break;
         }
+
+        if (habit.completed == 'true') {
+            text
+        }
         return ('\
         <div class="habit-card" id="1">\
             <a href="#" class="habit-card-delete" id="' + habit.id + '"><i class="fas fa-trash-alt"></i></a>\
@@ -91,7 +108,7 @@ var main = function() {
                 <div class="habit-card-rabbit-img"><img src="images/HabitRabbitLogoNewTransparent.png" alt="user"></div>\
                 <h3 class="habit-card-title">' + habit.name + '</h3>\
                 <p>' + freqText + ' a week</p>\
-                <a href class="button card-button ' + btnClass + '">' + text + '</a>\
+                <button ' + disabled + ' id="' + habit.id + '" class="button card-button complete-button ' + btnClass + '">' + text + '</button>\
                 <div class="habit-card-stats">\
                     <div class="habit-card-stat">\
                         <h3 class="">' + habit.duration + '</h3><small>Days</small>\
@@ -100,7 +117,7 @@ var main = function() {
                         <h3 class="">23,469</h3><small>Followers</small>\
                     </div>\
                     <div class="habit-card-stat">\
-                        <h3 class="">67%</h3><small>Success</small>\
+                        <h3 class="">' + getSuccesRatio(habit.succesful, habit.unsuccesful) + '%</h3><small>Success</small>\
                     </div>\
                 </div>\
             </div>\
@@ -113,12 +130,11 @@ var main = function() {
 
     var getHabits = function(){
         $.getJSON('/dashboard/get', function(result) {
-            console.log(result);
             habitList = [];
             var html = "";
             for( var i = 0; i < result.length; i++ ) {
 
-                habit = new Habit(result[i].habit_id, result[i].name, result[i].duration, result[i].frequency, result[i].good);
+                habit = new Habit(result[i].habit_id, result[i].name, result[i].duration, result[i].frequency, result[i].good, result[i].succesful, result[i].unsuccesful, result[i].complete);
                 html += createHTML(habit)
                 nextId = result[i].id + 1;
             }         
@@ -128,7 +144,12 @@ var main = function() {
 
     getHabits();
 
-    setInterval(() => { getHabits() }, 10000)
+    setInterval(() => { 
+        $.get('/dashboard/reset', function() {
+            getHabits()
+        });
+        console.log('refreshed')
+    }, 10000)
 
     $(".add").click(function() {
         $('#create-modal').css('display', 'block');
@@ -203,6 +224,21 @@ var main = function() {
             $(this).select();
         });
     });
+
+    $(".page-content").on("click", ".complete-button", function(e) {
+
+        var id = this.id;
+
+        console.log(id)
+
+        $.post("/dashboard/complete", {id: id});
+
+        getHabits();
+    })
+
+    setInterval(function() {
+
+    }, 10000)
     
 }
 

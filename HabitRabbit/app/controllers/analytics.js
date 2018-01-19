@@ -1,6 +1,6 @@
 var connection = require('../../config/database.js')
 
-var _getData = async (req, res) => {
+var _getData = (req, res) => {
     var data = {}
     connection.query('SELECT count(*) as total FROM   HabitRabbit.habits WHERE user_id = ? AND good = "true"', [req.user.user_id], function(err, result) {
         if (err)
